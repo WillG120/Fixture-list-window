@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1219</width>
+    <height>1122</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="fixtureList">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>831</width>
+      <height>1061</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>5Star Systems</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Abstract</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Acoustic Control</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ADB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AFX</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Alien Pro</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>American DJ</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ape Labs</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Aputure</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ARRI</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Astera</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Audibax</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ayra</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ayrton</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BeamZ</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Big Dipper</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bitfocus</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Blizzard</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>BoomToneDJ</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Briteq</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>cameo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Chauvet DJ</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Chauvet Professional</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Chroma-Q</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cinetec</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Clay Paky</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CLF</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Coemar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Contest</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Dedolight</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Desisti</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>DMG Lumière</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>DTS</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Elation</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Eliminator Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>EMPiRE Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Epsilon</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Equinox</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ETC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Eurolite</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Event Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Evolight</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Explo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Eyourlife</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fiilex</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Flash Professional</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fovitec</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fractal Lights</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fun Generation</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Futurelight</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Galaxis</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Gantom</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Generic</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ghost</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>GLP</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>GLX</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Griven</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Gruft</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hazebase</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hive Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hong Yi</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>HSL</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ibiza light</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ignition</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ikan</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Infinity</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>JB-Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>JB Systems</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>KAM</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Kino Flo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>LaluceNatz</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Laserworld</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>LEDJ</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>LEP-LASER</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>LIGHT SKY</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Light4me</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>lightmaXX</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Lite-Tek</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Litecraft</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>LiteGear</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Lixada</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Look Solutions</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Lupo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MagicFX</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mark</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Martin</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MDG</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mega LED Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MegaLite</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Minuit Une</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Nicols</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Orion Effects Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Panasonic</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Phocea Light</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Power Lighting</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>PR LIGHTING</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Prolights</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>QTX</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Renkforce</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Robe</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Robert Juliat</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Rockville</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SGM</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Shehds</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Showline</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Showlite</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ShowPRO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Showtec</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Showven</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Silver Star</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Skypix</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Smoke Factory</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Solaris</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Solena</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>SoundLight</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Stage Right</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Stairville</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Starway</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Studio Due</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sun Star</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tecshow</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>TIPTOP Stage Light</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>TMB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tomshine</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>U`King</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ultratec</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Varytec</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Velleman</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Venue</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="searchBar">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>831</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Search</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1219</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
