@@ -20,11 +20,12 @@ class mainWindow(QMainWindow):
         self.fixtureInfo = self.findChild(QTableWidget, "fixtureInfo")
 
         self.manufacturerFixtures = self.load_json_fixtures("manufacturerFixtures.json")
-        self.fixture1 = self.load_fixture_json("spica-250m.json")
+        self.FiveStarSystems_fixture1 = self.load_fixture_json("spica-250m.json")
         self.searchBar_Manufacturers.textChanged.connect(self.update_manufacturers)
         self.searchBar_Fixtures.textChanged.connect(self.update_fixtures)
         self.manufacturerList.itemClicked.connect(self.display_fixtures)
         self.fixtureList.itemClicked.connect(self.display_fixture_info)
+        self.manufacturerList.currentRowChanged.connect(self.print_item_pos)
 
         self.ch1_fader = self.findChild(QSlider, "ch1")
         self.ch2_fader = self.findChild(QSlider, "ch2")
@@ -399,9 +400,9 @@ class mainWindow(QMainWindow):
     def display_fixture_info(self, item):
        selected_fixture = item.text()
        
-       fixture_info = self.fixture1  # Assuming `self.fixture1` holds the data
+       fixture_info = self.FiveStarSystems_fixture1
        self.fixtureInfo.clear()
-       self.fixtureInfo.setColumnCount(2)  # Two columns: Attribute & Value
+       self.fixtureInfo.setColumnCount(2)
        self.fixtureInfo.setHorizontalHeaderLabels(["Attribute", "Value"])
        attributes = {
            "Categories": ", ".join(fixture_info.get("categories", [])),
@@ -424,7 +425,9 @@ class mainWindow(QMainWindow):
 
         self.fixtureList.clear()
         self.fixtureList.addItems(fixtures)
-        
+
+    def print_item_pos(self, index):
+        print(f"Item index: {index}")
         
 
     def update_manufacturers(self): #Manufacturer Search bar
