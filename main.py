@@ -20,12 +20,11 @@ class mainWindow(QMainWindow):
         self.fixtureInfo = self.findChild(QTableWidget, "fixtureInfo")
 
         self.manufacturerFixtures = self.load_json_fixtures("manufacturerFixtures.json")
-        self.FiveStarSystems_fixture1 = self.load_fixture_json("spica-250m.json")
+        self.fixtureData = self.manufacturerList.currentRowChanged.connect(self.json_load)
         self.searchBar_Manufacturers.textChanged.connect(self.update_manufacturers)
         self.searchBar_Fixtures.textChanged.connect(self.update_fixtures)
         self.manufacturerList.itemClicked.connect(self.display_fixtures)
         self.fixtureList.itemClicked.connect(self.display_fixture_info)
-        self.manufacturerList.currentRowChanged.connect(self.print_item_pos)
 
         self.ch1_fader = self.findChild(QSlider, "ch1")
         self.ch2_fader = self.findChild(QSlider, "ch2")
@@ -392,32 +391,50 @@ class mainWindow(QMainWindow):
         with open(filename, "r") as file:
                 return json.load(file)
         
-    def load_fixture_json(self, filename):
 
-        with open(filename, "r") as file:
-            return json.load(file)
+    def json_load(self, index):
+        global file_path
+        file_path = ("spica-250m.json")
+        
+        if index == 0:
+            file_path = ("spica-250m.json")
+        
+        elif index == 1:
+            file_path = ("twister-4.json")
 
-    def display_fixture_info(self, item):
-       selected_fixture = item.text()
+        elif index == 2:
+            file_path = ("par-180-cob-3in1.json")
+        
+        elif index == 3:
+            
+            current_index = self.fixtureList.currentRow()
+            
+            if current_index == 0:
+                file_path = ("alc4.json")
+            elif current_index == 1:
+                file_path = ("europe-105.json")
+            elif current_index == 2:
+                file_path = ("warp-m.json")
+        
+        else:
+            file_path = ("error")
+
+        return file_path
+
+
+
+    def display_fixture_info(self, index):
+       file = self.json_load(index)
        
-       fixture_info = self.FiveStarSystems_fixture1
-       self.fixtureInfo.clear()
-       self.fixtureInfo.setColumnCount(2)
-       self.fixtureInfo.setHorizontalHeaderLabels(["Attribute", "Value"])
-       attributes = {
-           "Categories": ", ".join(fixture_info.get("categories", [])),
-           "Modes": ", ".join(mode["name"] for mode in fixture_info.get("modes", []))
-           }
-       
-       self.fixtureInfo.setRowCount(len(attributes))
-       for row, (key, value) in enumerate(attributes.items()):
-        self.fixtureInfo.setItem(row, 0, QtWidgets.QTableWidgetItem(key))
-        self.fixtureInfo.setItem(row, 1, QtWidgets.QTableWidgetItem(str(value)))
-        self.fixtureInfo.resizeColumnsToContents()
-        self.fixtureInfo.resizeRowsToContents()
+
+       with open(file, 'r') as files:
+           data = json.load(files)
+
+           print(file)
 
 
-    
+        
+        
     def display_fixtures(self, item):
         
         selected_item = item.text()
@@ -426,8 +443,9 @@ class mainWindow(QMainWindow):
         self.fixtureList.clear()
         self.fixtureList.addItems(fixtures)
 
-    def print_item_pos(self, index):
-        print(f"Item index: {index}")
+            
+
+
         
 
     def update_manufacturers(self): #Manufacturer Search bar
