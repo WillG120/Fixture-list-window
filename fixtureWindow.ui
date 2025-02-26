@@ -753,6 +753,18 @@
       <height>331</height>
      </rect>
     </property>
+    <property name="lineWidth">
+     <number>10</number>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>510</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>50</number>
+    </attribute>
     <row>
      <property name="text">
       <string>Catergories</string>
@@ -760,7 +772,7 @@
     </row>
     <row>
      <property name="text">
-      <string>Channels</string>
+      <string>Modes</string>
      </property>
     </row>
     <column>
@@ -1961,6 +1973,58 @@
       <width>31</width>
       <height>23</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fixtureAdd_btn">
+    <property name="geometry">
+     <rect>
+      <x>467</x>
+      <y>1195</y>
+      <width>113</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add fixture</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>1757</x>
+      <y>890</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete Fixture</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>1859</x>
+      <y>890</y>
+      <width>121</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fixture Settings</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>1978</x>
+      <y>895</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No channel</string>
     </property>
    </widget>
   </widget>

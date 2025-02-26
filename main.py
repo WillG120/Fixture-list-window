@@ -1,9 +1,12 @@
+import os
 import sys,time
 import json
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QLineEdit, QListWidget, QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLineEdit, QListWidget, QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel, QTableWidgetItem, QPushButton
 from PyQt5 import uic
 from datetime import datetime
+
+JSON_DIR = "fixtures"
 
 class mainWindow(QMainWindow):
 
@@ -13,19 +16,34 @@ class mainWindow(QMainWindow):
 
         uic.loadUi("fixtureWindow.ui",self)
 
+
+
         self.manufacturerList = self.findChild(QListWidget, "manufacturerList")
+        self.fixtureList = self.findChild(QListWidget, "fixtureList")
+        self.sceneList = self.findChild(QListWidget, "sceneList")
+
         self.searchBar_Manufacturers = self.findChild(QLineEdit, "searchBar_Manufacturers")
         self.searchBar_Fixtures = self.findChild(QLineEdit, "searchBar_Fixtures")
-        self.fixtureList = self.findChild(QListWidget, "fixtureList")
+
         self.fixtureInfo = self.findChild(QTableWidget, "fixtureInfo")
 
+        self.fixtureAdd_btn = self.findChild(QPushButton, "fixtureAdd_btn")
+        self.delFixture_btn = self.findChild(QPushButton, "delFixture_btn")
+        self.fixtureSettings_btn = self.findChild(QPushButton, "fixtureSettings_btn")
+
+        self.fixtureChannel_lbl = self.findChild(QPushButton, "fixtureChannel_lbl")
+
+        
+        #Event Handlers
         self.manufacturerFixtures = self.load_json_fixtures("manufacturerFixtures.json")
         self.fixtureData = self.manufacturerList.currentRowChanged.connect(self.json_load)
         self.searchBar_Manufacturers.textChanged.connect(self.update_manufacturers)
         self.searchBar_Fixtures.textChanged.connect(self.update_fixtures)
-        self.manufacturerList.itemClicked.connect(self.display_fixtures)
-        self.fixtureList.itemClicked.connect(self.display_fixture_info)
+        self.manufacturerList.currentItemChanged.connect(self.display_fixtures)
+        self.fixtureList.currentItemChanged.connect(self.display_fixture_info)
+        self.fixtureAdd_btn.clicked.connect(self.add_fixture)
 
+        #Fader sliders
         self.ch1_fader = self.findChild(QSlider, "ch1")
         self.ch2_fader = self.findChild(QSlider, "ch2")
         self.ch3_fader = self.findChild(QSlider, "ch3")
@@ -56,6 +74,7 @@ class mainWindow(QMainWindow):
         self.ch28_fader = self.findChild(QSlider, "ch28")
         self.master_fader = self.findChild(QSlider, "master")
 
+        #Fader labels
         self.ch1_lbl = self.findChild(QLabel, "lbl_1")
         self.ch2_lbl = self.findChild(QLabel, "lbl_2")
         self.ch3_lbl = self.findChild(QLabel, "lbl_3")
@@ -86,6 +105,7 @@ class mainWindow(QMainWindow):
         self.ch28_lbl = self.findChild(QLabel, "lbl_28")
         self.master_lbl = self.findChild(QLabel, "lbl_Master")
 
+        #Fader LCDs
         self.ch1_lvl = self.findChild(QLCDNumber, "ch1_lcd")
         self.ch2_lvl = self.findChild(QLCDNumber, "ch2_lcd")
         self.ch3_lvl = self.findChild(QLCDNumber, "ch3_lcd")
@@ -117,6 +137,7 @@ class mainWindow(QMainWindow):
         self.master_lvl = self.findChild(QLCDNumber, "master_lcd")
 
 
+        #Fader event handlers
         self.ch1_fader.sliderMoved.connect(self.ch1_lvl_change)
         self.ch2_fader.sliderMoved.connect(self.ch2_lvl_change)
         self.ch3_fader.sliderMoved.connect(self.ch3_lvl_change)
@@ -146,10 +167,7 @@ class mainWindow(QMainWindow):
         self.ch27_fader.sliderMoved.connect(self.ch27_lvl_change)
         self.ch28_fader.sliderMoved.connect(self.ch28_lvl_change)
         self.master_fader.sliderMoved.connect(self.master_lvl_change)
-
         
-        
-
         self.show()
 
     def ch1_lvl_change(self, sliderPosition):
@@ -383,71 +401,97 @@ class mainWindow(QMainWindow):
             self.master_lbl.setStyleSheet("color: rgb(255, 0, 0);")
         else:
             self.master_lbl.setStyleSheet("color: rgb(255, 255, 255);")
-
-        
-
+            
     def load_json_fixtures(self, filename):
 
-        with open(filename, "r") as file:
-                return json.load(file)
-        
+        file_path = os.path.join(JSON_DIR, filename)
 
+        with open(file_path, "r") as file:
+                return json.load(file)
+    
     def json_load(self, index):
         global file_path
-        file_path = ("spica-250m.json")
+        file_path = ("")
+
+        global index_num
+        index_num = index
         
         if index == 0:
-            file_path = ("spica-250m.json")
-        
+            file_path = os.path.join(JSON_DIR, "spica-250m.json")
+            
         elif index == 1:
-            file_path = ("twister-4.json")
-
+            file_path = os.path.join(JSON_DIR, "twister-4.json")
+                
         elif index == 2:
-            file_path = ("par-180-cob-3in1.json")
-        
+            file_path = os.path.join(JSON_DIR, "par-180-cob-3in1.json")
+                
         elif index == 3:
             
             current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["alc4.json", "europe-105.json", "warp-m.json"]
             
-            if current_index == 0:
-                file_path = ("alc4.json")
-            elif current_index == 1:
-                file_path = ("europe-105.json")
-            elif current_index == 2:
-                file_path = ("warp-m.json")
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 4:
+            file_path = os.path.join(JSON_DIR, "lmh460z.json")
+
+        elif index == 5:
+            file_path = os.path.join(JSON_DIR, "alien-s.json")
         
-        else:
-            file_path = ("error")
+        elif index == 6:
+            
+            current_index = self.fixtureList.currentRow()
 
-        return file_path
+            fixture_files = ["7p-hex-ip.json", "12p-hex-ip.josn", "18p-hex-ip.json", "auto-spot-150.json",
+                            "boom-box-fx2.json", "cob-cannon-wash.json", "crazy-pocket-8.json", "dekker-led.json",
+                            "dotz-par.json", "encore-lp12z-ip.json", "encore-profile-1000-ww.json", "flat-par-qa12.json",
+                            "flat-par-qa12xs.json", "fog-fury-jett-pro.json", "galaxian-3d.json", "illusion-dotz-4-4.json",
+                            "inno-pocket-beam-q4.json", "inno-pocket-fusion.json", "inno-spot-pro.json",
+                            "mega-bar-50rgb-rc.json", "mega-bar-50rgb.json", "mega-bar-rgba.json", "mega-hex-par.json",
+                            "mega-tripar-profile-plus.json", "mega-tripar-profile.json", "mod-hex100.json",
+                            "pocket-pro.json", "quad-phase-hp.json", "revo-4-ir.json", "revo-burst.json", "revo-sweep.json",
+                            "saber-spot-rgbw.json", "starburst.json", "stinger-ii.json", "stinger-spot.json", "uv-eco-bar.json",
+                            "vbar-pak.json", "vizi-q-wash7.json", "vizi-spot-led-pro.json", "xs-400.json"
+                            ]
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
 
 
 
-    def display_fixture_info(self, index):
-       file = self.json_load(index)
-       
+        return file_path, index_num
+    
+    def display_fixture_info(self, item):
 
-       with open(file, 'r') as files:
-           data = json.load(files)
-
-           print(file)
-
-
+        self.json_load(index_num)
         
-        
-    def display_fixtures(self, item):
+        with open(file_path, 'r') as file:
+           data = json.load(file)
+           
+           categories = ", ".join(data.get("categories", []))
+           modes = ", ".join(mode["name"] for mode in data.get("modes", []))
+
+           self.fixtureInfo.setItem(0, 0, QTableWidgetItem(categories))
+           self.fixtureInfo.setItem(0, 1, QTableWidgetItem(modes)) 
+    
+           print(file_path)
+
+    def display_fixtures(self, item): #Displays fixtures in fixtureList when manufacturer is selected
         
         selected_item = item.text()
         fixtures = self.manufacturerFixtures.get(selected_item, [])
 
         self.fixtureList.clear()
         self.fixtureList.addItems(fixtures)
+    
+    def add_fixture(self): #Add fixtures to sceneList
 
-            
+        selected_fixture = self.fixtureList.currentItem()
+        fixture = selected_fixture.text()
 
-
-        
-
+        self.sceneList.addItem(fixture)
+    
     def update_manufacturers(self): #Manufacturer Search bar
 
         search_entry = self.searchBar_Manufacturers.text().lower()
@@ -458,10 +502,10 @@ class mainWindow(QMainWindow):
             
             if search_entry in item.text().lower():
                 item.setHidden(False)
-           
+               
             else:
                 item.setHidden(True)
-
+        
     def update_fixtures(self): #Fixture Search bar
 
         search_entry = self.searchBar_Fixtures.text().lower()
@@ -476,8 +520,7 @@ class mainWindow(QMainWindow):
             else:
                 item.setHidden(True)
 
-
-
+#Main code
 app = QApplication(sys.argv)
 window = mainWindow()
 app.exec_()

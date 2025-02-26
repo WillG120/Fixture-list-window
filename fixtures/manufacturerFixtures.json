@@ -1,0 +1,862 @@
+{
+    "5Star Systems": [
+        "Spica 250M"
+    ],
+    "Abstract": [
+        "Twister 4"
+    ],
+    "Acoustic Control": [
+        "PAR 180 COB 3in1"
+    ],
+    "ADB": [
+        "Europe 105",
+        "WARP/M",
+        "ALC4"
+    ],
+    "AFX": [
+        "LMH460Z"
+    ],
+    "Alien Pro": [
+        "Alien S"
+    ],
+    "American DJ": [
+        "Mega Bar 50RGB",
+        "Galaxian 3D",
+        "Crazy Pocket 8",
+        "Mega Hex Par",
+        "Pocket Pro",
+        "Auto Spot 150",
+        "Quad Phase HP",
+        "Revo Burst",
+        "Revo Sweep",
+        "Flat Par QA12",
+        "Inno Spot Pro",
+        "Mega TRIPAR Profile Plus",
+        "Dotz Par",
+        "Boom Box Fx2",
+        "VBar Pak",
+        "Inno Pocket Fusion",
+        "Saber Spot RGBW",
+        "Dekker LED",
+        "Flat Par QA12XS",
+        "Inno Pocket Beam Q4",
+        "Encore Profile 1000 WW",
+        "12P Hex IP",
+        "XS 400",
+        "7P HEX IP",
+        "Vizi Q Wash7",
+        "Stinger II",
+        "Starbust",
+        "UV Eco Bar",
+        "Mega Bar RGBA",
+        "MOD HEX100",
+        "COB Cannon Wash",
+        "Revo 4 IR",
+        "Stinger Spot",
+        "Mega TRIPAR Profile",
+        "Mega Bar 50RGB RC",
+        "18P HEX IP",
+        "Illusion Dotz 4.4",
+        "Fog Fury Jett Pro",
+        "Vizi Spot LED Pro",
+        "Encore LP12Z IP"
+    ],
+    "Ape Labs": [
+        "LightCan"
+    ],
+    "Aputure": [
+        "LS 1200D Pro",
+        "Nova P300c",
+        "LS 600X Pro",
+        "LS 300x",
+        "LS 600D",
+        "LS 600D Pro"
+    ],
+    "ARRI": [
+        "L5-C",
+        "Broadcaster 2 Plus",
+        "L7-C",
+        "Skypanel S30C",
+        "Skypanel S120C",
+        "Skypanel S360C",
+        "Skypanel S60C",
+        "L10-C"
+    ],
+    "Astera": [
+        "FP2 Helios Tube",
+        "FP5 NYX Bulb",
+        "FP1 Titan Tube",
+        "FP3 Hyperion Tube",
+        "AX3 Lightdrop"
+    ],
+    "Audibax": [
+        "Boston 60"
+    ],
+    "Ayra": [
+        "TDC Triple Burst",
+        "Compar 20"
+    ],
+    "Ayrton": [
+        "Diablo-TC",
+        "Diablo-S",
+        "MagicBlade FX"
+    ],
+    "BeamZ": [
+        "Triple Flex Centre Pro LED",
+        "H2000 Faze Machine",
+        "Panther 7R",
+        "PLS25 Par"
+    ],
+    "Big Dipper": [
+        "LS90",
+        "LP001"
+    ],
+    "Bitfocus": [
+        "Companion v2.0"
+    ],
+    "Blizzard": [
+        "RokBox RGBW",
+        "HotBox EXA",
+        "HotBox RGBW",
+        "Puck RGBAW"
+    ],
+    "BoomToneDJ": [
+        "SilentPAR 7x10W 6in1",
+        "SilentPAR 7x3W 3in1",
+        "SilentPAR 7x10W 5in1",
+        "SilentPAR 5x10W 5in1",
+        "Crazy Spot 30",
+        "SilentPAR 12x10W 6in1",
+        "SilentPAR 5x3W 3in1",
+        "SilentPAR 12x3W 3in1",
+        "Xtrem LED",
+        "SilentPAR 5x10W 6in1",
+        "SilentPAR 12x10W 5in1"
+    ],
+    "Briteq": [
+        "BT-COLORAY 60R",
+        "PRO BEAMER ZOOM INDOOR",
+        "BT-COLORAY 18FCR",
+        "BTX-Titan",
+        "BEAMSPOT1-DMX FC",
+        "COB Slim 100-RGB",
+        "BT-STAGEPAR 6in1",
+        "BT-COLORAY 120R",
+        "BEAM FURY-1",
+        "PRO BEAMER ZOOM OUTDOOR",
+        "BT-LEDROTOR",
+        "BTX-Cirrus II"
+    ],
+    "cameo": [
+        "ROOT PAR 6",
+        "Q-Spot 40 RGBW",
+        "Flat Pro Flood 600 IP65",
+        "Multi PAR COB 1",
+        "Q-Spot 40 CW",
+        "IODA 600 RGB",
+        "Instant Hazer 1500 T Pro",
+        "Flash Matrix 250",
+        "Hydrabeam 400 RGBW",
+        "Thunder Wash 600 RGBW",
+        "Auro Spot 300",
+        "Auro Spot 100",
+        "Flat PAR Can Tri 5x 3W IR",
+        "Outdoor PAR Tri 12",
+        "Hydrabeam 100",
+        "Gobo Scanner 80",
+        "TS 60 RGBW",
+        "Instant Air 2000 Pro",
+        "Flat Pro Flood IP65 Tri",
+        "Auro Spot 400",
+        "Multi FX Bar",
+        "Hydrabeam 300 RGBW",
+        "Flat PAR Can Tri 7x 3W IR",
+        "Auro Beam 150",
+        "Thunder Wash 600 W",
+        "Steam Wizard 1000",
+        "NanoSpot 120",
+        "Thunder Wash 100 RGB",
+        "STORM",
+        "Zenit W600",
+        "Zenit Z120",
+        "Thunder Wash 600 RGB",
+        "Thunder Wash 100 W",
+        "Flat PAR Can RGB 10 IR",
+        "Auro Spot 200",
+        "IODA 400 RGY",
+        "IODA 1000 RGB",
+        "TS 100 WW",
+        "Steam Wizard 2000",
+        "Flat Pro 18",
+        "Instant Air 1000 Pro",
+        "TS 200 FC"
+    ],
+    "Chauvet DJ": [
+        "Kinta X",
+        "LED PAR 64 TRI-B",
+        "COLORband PiX",
+        "WashFX",
+        "MotionDrape LED",
+        "Megastrobe FX12",
+        "Intimidator Spot 260",
+        "SlimPAR Pro QZ12",
+        "SlimPAR Pro W",
+        "EVE P-100 WW",
+        "Hurricane Haze 2D",
+        "Freedom H1",
+        "EVE P-130 RGB",
+        "SlimPAR T12 BT",
+        "SlimPAR T12 USB",
+        "COREpar UV USB",
+        "COLORband PiX IP",
+        "Intimidator Spot 160",
+        "Hurricane 1600",
+        "DMX-4",
+        "Hurricane Haze 1DX",
+        "GigBAR 2",
+        "SlimPAR Q12 BT",
+        "SlimPAR Pro RGBA",
+        "Intimidator Spot 110",
+        "SlimPAR Pro H USB",
+        "Geyser RGB"
+    ],
+    "Chauvet Professional": [
+        "COLORado 1 Solo",
+        "COLORdash S-Par 1",
+        "Ovation F-915VW",
+        "Rogue R2 Wash",
+        "Vesuvio RGBA",
+        "Rogue R1 Wash",
+        "COLORdash Batten-Quad 6"
+    ],
+    "Chroma-Q": [
+        "Color Force II 48",
+        "Color Force II 72",
+        "Color Force II 12"
+    ],
+    "Cinetec": [
+        "PAR 18x15W RGBWA"
+    ],
+    "Clay Paky": [
+        "Sharpy",
+        "A.leda B-EYE K10",
+        "A.leda B-EYE K20",
+        "Show-Batten 100",
+        "Spheriscan",
+        "Alpha Spot QWO 800"
+    ],
+    "CLF": [
+        "Hera"
+    ],
+    "Coemar": [
+        "ProSpot 250 LX"
+    ],
+    "Contest": [
+        "IrLEDFLAT 5x12SIXb",
+        "irLED64 18x12SIX"
+    ],
+    "Dedolight": [
+        "DLED7-BI",
+        "DLED4-BI"
+    ],
+    "Desisti": [
+        "SoftLED 4 VW",
+        "SoftLED 8 VW"
+    ],
+    "DMG Lumière": [
+        "SL1 MIX",
+        "MINI MIX",
+        "MAXI MIX"
+    ],
+    "DTS": [
+        "Scena LED 150",
+        "XR1200 WASH",
+        "XR4 Spot"
+    ],
+    "Elation": [
+        "SIXPAR 300 WMG",
+        "ACL 360 Roller",
+        "SIXPAR 300",
+        "FUZE PAR Z60IP",
+        "SIXPAR 100",
+        "SIXPAR 300 IP",
+        "UNI BAR",
+        "ZW19",
+        "Platinum Spot 15R Pro",
+        "SIXPAR 200 IP",
+        "SIXPAR 200",
+        "SIXPAR 100IP",
+        "SIXPAR 200 WMG",
+        "CUEPIX Blinder WW2",
+        "Platinum Seven",
+        "Proteus Hybrid",
+        "Platinum HFX",
+        "CUEPIX Blinder WW4",
+        "Design LED Par Zoom"
+    ],
+    "Eliminator Lighting": [
+        "Stealth Wash Zoom",
+        "Stealth Beam"
+    ],
+    "EMPiRE Lighting": [
+        "8x 3W LED Spider Effect"
+    ],
+    "Epsilon": [
+        "Duo Q-Beam Bar"
+    ],
+    "Equinox": [
+        "Gigabar",
+        "RGB Power Batten"
+    ],
+    "ETC": [
+        "fos/4 PL8",
+        "ColorSource Spot Deep Blue",
+        "Source 4WRD Color II",
+        "fos/4 PD16",
+        "ColorSource PAR Deep Blue",
+        "fos/4 PL16",
+        "Source Four LED Series 3 Lustr X8",
+        "Source Four LED Series 2 Lustr",
+        "Source Four LED Series 3 Daylight HDR",
+        "Source Four LED Series 2 Daylight HD",
+        "fos/4 PD24",
+        "fos/4 PD8",
+        "ColorSource Spot",
+        "Source Four LED Series 2 Tungsten HD",
+        "fos/4 PL24",
+        "ColorSource PAR"
+    ],
+    "Eurolite": [
+        "LED KLS-801",
+        "LED TMH-18",
+        "LED TL-3 RGB+UV",
+        "LED FE-1500",
+        "LED Bar-6 QCL RGBW",
+        "LED THA-100F MK2",
+        "Multiflood Pro IP SMD RGBW",
+        "LED TMH-14",
+        "LED SLS-5 BCL",
+        "LED TMH-9",
+        "LED PARty Spot",
+        "LED TL-4 QCL",
+        "LED TMH-8",
+        "LED H2O",
+        "N-150",
+        "LED 7C-7 Silent Slim",
+        "LED SVF-1",
+        "LED PARty TCL Spot",
+        "LED DMX Pixel Tube 16 RGB IP20",
+        "LED Z-200 TCL",
+        "LED PAR-56 TCL",
+        "LED ML-56 RGBW",
+        "LED THA-100F",
+        "LED Bar-12 QCL RGBA Bar",
+        "MD-2030",
+        "TS-2 DMX-Scanner",
+        "TMH XB-130",
+        "LED Bar-3 HCL Bar",
+        "LED PS-4 HCL",
+        "LED PIX-144",
+        "EDX-4",
+        "LED Theatre COB 200 RGB+WW",
+        "LED Big PARty TCL Spot",
+        "LED PIX-12 HCL",
+        "LED Big PARty Spot",
+        "LED TMH-7",
+        "LED SLS-6 UV Floor",
+        "LED TMH-X25",
+        "LED SLS-12 BCL",
+        "LED TMH-17",
+        "LED TMH-X12",
+        "LED B-40"
+    ],
+    "Event Lighting": [
+        "Par12x12",
+        "Par5x12"
+    ],
+    "Evolight": [
+        "Colours Archspot 54 RGB"
+    ],
+    "Explo": [
+        "Gasprojector GX2",
+        "X2 Wave Flamer"
+    ],
+    "Eyourlife": [
+        "LED RGBW 54x3 Par64"
+    ],
+    "Fiilex": [
+        "P3 Color"
+    ],
+    "Flash Professional": [
+        "LED Moving Head 150W",
+        "LED PAR 64 COB 300W RGBWAUV",
+        "LED PAR 64 SLIM 7x10W RGBW Mk2"
+    ],
+    "Fovitec": [
+        "600XB"
+    ],
+    "Fractal Lights": [
+        "PAR LED 7x10W",
+        "PAR LED 7x12W",
+        "PAR LED 7x9W"
+    ],
+    "Fun Generation": [
+        "LED Pot 12×1W RGBW",
+        "SePar Hex LED RGBAW UV",
+        "PicoBlade FX 4x10W RGBW",
+        "LED Pot 12x1W QCL RGB WW 40°",
+        "PicoSpot 45 LED",
+        "PicoWash 40 Pixel Quad LED",
+        "SePar Quad LED RGBW",
+        "SePar Quad LED RGB UV",
+        "LED Pot 12x1W QCL RGB WW 15°",
+        "PicoSpot 20 LED",
+        "PicoBeam 30 Quad LED",
+        "PicoBeam 60 COB RGBW"
+    ],
+    "Futurelight": [
+        "SC-250 Scanner",
+        "DJ-Scan 250",
+        "DMH-75.i LED Moving Head",
+        "STB-648 LED Strobe SMD 5050",
+        "PRO Slim PAR-7 HCL"
+    ],
+    "Galaxis": [
+        "G-Flame"
+    ],
+    "Gantom": [
+        "Precision DMX"
+    ],
+    "Generic": [
+        "RGBWAUV Fader",
+        "Pan/Tilt Fader",
+        "CMY Fader",
+        "DRGB Fader",
+        "Color Temperature Fader",
+        "4-Channel Dimmer Pack",
+        "GRBW Fader",
+        "RGB Fader",
+        "RGBA Fader",
+        "RGBD Fader",
+        "RGBWW Fader",
+        "Desk Channel",
+        "CW/WW Fader",
+        "Strobe",
+        "RGBW Fader",
+        "DRGBW Fader"
+    ],
+    "Ghost": [
+        "IP Spot Bat",
+        "IP Spot Pro"
+    ],
+    "GLP": [
+        "Force 120",
+        "impression Spot One",
+        "Impression X4 Bar 10",
+        "JDC1",
+        "impression FR1",
+        "KNV Cube",
+        "impression Laser",
+        "KNV Arc"
+    ],
+    "GLX": [
+        "GLS-4 LED Stage 4"
+    ],
+    "Griven": [
+        "Kolorado 4000"
+    ],
+    "Gruft": [
+        "Ventilator",
+        "Pixel Tube"
+    ],
+    "Hazebase": [
+        "base*hazer*pro"
+    ],
+    "Hive Lighting": [
+        "Wasp 100-C",
+        "Hornet 200-CX",
+        "Bumble Bee 25-CX",
+        "Hornet 200-C",
+        "Wasp 100-CX",
+        "Bee 50-C",
+        "Super Hornet 575-C"
+    ],
+    "Hong Yi": [
+        "HY-G60"
+    ],
+    "HSL": [
+        "40W Beam Spot Light RGBW"
+    ],
+    "Ibiza light": [
+        "LS-005LED",
+        "LP64 LED-PROMO",
+        "LED PAR CAN 12x3W 3-in-1 RGB"
+    ],
+    "Ignition": [
+        "2bright Par 18 IP",
+        "Teatro LED Spot 100 FR",
+        "Teatro LED Spot 100 PC",
+        "LED Accu PAR"
+    ],
+    "Ikan": [
+        "Stryder SFB150"
+    ],
+    "Infinity": [
+        "iW-720 RDM",
+        "iW-340 RDM"
+    ],
+    "JB-Lighting": [
+        "Varyscan P7",
+        "JBLED A7"
+    ],
+    "JB Systems": [
+        "iRock 5C",
+        "Twin Effect Laser",
+        "iMove 5S"
+    ],
+    "KAM": [
+        "GoboTracer"
+    ],
+    "Kino Flo": [
+        "Celeb 250 LED DMX",
+        "Celeb 450 LED DMX",
+        "Celeb LED 201 DMX"
+    ],
+    "LaluceNatz": [
+        "DJ Lights",
+        "18LEDs Par Light"
+    ],
+    "Laserworld": [
+        "DS-1000RGB",
+        "CS-1000RGB",
+        "ShowNET",
+        "EL-400RGB MK2"
+    ],
+    "LEDJ": [
+        "Slimline 12Q5 RGBA",
+        "Slimline 12Q5 RGBW"
+    ],
+    "LEP-LASER": [
+        "Diamond PRO 2.8"
+    ],
+    "LIGHT SKY": [
+        "Aurora"
+    ],
+    "Light4me": [
+        "LED PAR 18x3W UV"
+    ],
+    "lightmaXX": [
+        "Platinum Mini TRI-PAR",
+        "CLS Nano COB",
+        "Easy Wash Quad LED",
+        "LED Nano PAR",
+        "Vector Haze 1.0",
+        "Vega BAT-1",
+        "DJ Scan LED",
+        "LED Par 56",
+        "Vega Zoom Wash",
+        "Vector Pixel BAR 18x 15W RGBWA"
+    ],
+    "Lite-Tek": [
+        "Beam 230"
+    ],
+    "Litecraft": [
+        "WashX.21"
+    ],
+    "LiteGear": [
+        "S2 LiteMat 2",
+        "S2 LiteMat 3",
+        "S2 LiteMat 4",
+        "LiteMat Plus 1",
+        "LiteTile Plus 8",
+        "LiteMat Plus 2L",
+        "LiteTile Plus 4",
+        "LiteMat Plus 3",
+        "LiteMat Plus 2",
+        "S2 LiteMat 1",
+        "LiteMat Plus 8",
+        "S2 LiteMat 2L",
+        "LiteMat Plus 4"
+    ],
+    "Lixada": [
+        "Mini Gobo Moving Head Light",
+        "Mini Beam RGBW",
+        "Mini Moving Head RGBW"
+    ],
+    "Look Solutions": [
+        "Cryofog",
+        "Viper NT"
+    ],
+    "Lupo": [
+        "SuperpanelPRO Dual Color 30",
+        "UltrapanelPRO Full Color 30",
+        "Ultrapanel Full Color 60",
+        "Superpanel Dual Color 60",
+        "Actionpanel Dual Color",
+        "Superpanel Full Color 60",
+        "Ultrapanel Dual Color 60",
+        "UltrapanelPRO Dual Color 30",
+        "Actionpanel Full Color",
+        "SuperpanelPRO Full Color 30"
+    ],
+    "MagicFX": [
+        "SMOKEJET",
+        "Stage Flame",
+        "PSYCO2JET"
+    ],
+    "Mark": [
+        "SUPERBAT LED 72",
+        "MBAR 381 IP"
+    ],
+    "Martin": [
+        "Rush MH 3 Beam",
+        "Rush MH 2 Wash",
+        "MAC 250 Beam",
+        "Stagebar 54S",
+        "MAC Viper Wash (DX)",
+        "RoboScan 812",
+        "Atomic 3000",
+        "Rush PAR 2 RGBW Zoom",
+        "MAC Viper Performance",
+        "Stagebar 54L",
+        "MAC Encore Performance",
+        "MAC 250 Wash",
+        "MAC 700 Wash",
+        "Mac 250 Krypton",
+        "Magnum 2500 HZ",
+        "MAC Viper AirFX",
+        "MAC Axiom Hybrid",
+        "MAC 600",
+        "Rush MH 7 Hybrid",
+        "Rush MH 5 Profile",
+        "Mania SCX500",
+        "Rush Scanner 1 LED",
+        "MAC Aura",
+        "MX-10 Extreme"
+    ],
+    "MDG": [
+        "Hazer ATMOSPHERE APS",
+        "theONE Atmospheric Generator"
+    ],
+    "Mega LED Lighting": [
+        "LED PAR Light-372",
+        "ZOOM 360"
+    ],
+    "MegaLite": [
+        "Washbot LED CYMK 300",
+        "Framebot 600",
+        "Spotbot LED CMY 300",
+        "MW1"
+    ],
+    "Minuit Une": [
+        "IVL Carré"
+    ],
+    "Nicols": [
+        "PAT 252",
+        "LED BAR 123 FC IP"
+    ],
+    "Orion Effects Lighting": [
+        "ORCAN2"
+    ],
+    "Panasonic": [
+        "PT-RZ120",
+        "PT-RZ120L"
+    ],
+    "Phocea Light": [
+        "Box LEDs Batterie 6x15W"
+    ],
+    "Power Lighting": [
+        "Wash 84W"
+    ],
+    "PR LIGHTING": [
+        "XS 250 Spot"
+    ],
+    "Prolights": [
+        "SMARTBAT",
+        "V700SPOT",
+        "POLAR3000",
+        "PIXPAN16",
+        "DIAMOND19"
+    ],
+    "QTX": [
+        "Lux Ld01",
+        "LUX-LD30W"
+    ],
+    "Renkforce": [
+        "GM107"
+    ],
+    "Robe": [
+        "Spot 160 XT",
+        "Robin 300E Wash",
+        "Robin 600E Spot",
+        "Robin LEDWash 600",
+        "Robin LEDBeam 150",
+        "Robin ParFect 150",
+        "ColorSpot 2500E AT",
+        "ROBIN Viva CMY",
+        "Robin T1 Profile",
+        "DJ Scan 250 XT",
+        "Robin LEDBeam 100"
+    ],
+    "Robert Juliat": [
+        "613SX"
+    ],
+    "Rockville": [
+        "RockPAR50"
+    ],
+    "SGM": [
+        "P-5"
+    ],
+    "Shehds": [
+        "LED Flat Par 12x3W RGBW",
+        "LED Spot 60W",
+        "LED Flat Par 7x18W RGBWA+UV Light",
+        "LED Par 18x18W",
+        "LED Flat Par 18x18W",
+        "LED Flat Par 54x3W"
+    ],
+    "Showline": [
+        "SL NITRO 510C"
+    ],
+    "Showlite": [
+        "LB-4390"
+    ],
+    "ShowPRO": [
+        "Litebar H9"
+    ],
+    "Showtec": [
+        "LED Light Bar RGB V3",
+        "Archi Painter 24/8 Q4",
+        "Kanjo Spot 60",
+        "Horizon 8",
+        "Phantom 3R Beam",
+        "Sunstrip Active MKII",
+        "Explorer 250 Wash",
+        "XS-1 RGBW",
+        "Accent Spot Q4 RGBW",
+        "Compact Par 18",
+        "Phantom Matrix FX",
+        "Pixel Bar 12 MKII",
+        "Atmos 2000",
+        "Dominator",
+        "DIM-4LC",
+        "Sunraise LED",
+        "Kanjo Wash RGB",
+        "Compact Par 7 Tri",
+        "Phantom 25 LED Wash",
+        "LED Blinder 2 COB",
+        "Performer 2500",
+        "Club PAR 12/4 RGBW",
+        "Phantom 50 LED Spot",
+        "Club Par 12/6 RGBWAUV",
+        "Phantom 140 LED Beam"
+    ],
+    "Showven": [
+        "Sparkular (BT01)",
+        "Sparkular Fall (BT04)"
+    ],
+    "Silver Star": [
+        "MX-Indigo 6000XE"
+    ],
+    "Skypix": [
+        "Ribalta Beam"
+    ],
+    "Smoke Factory": [
+        "Tour Hazer II",
+        "Data II"
+    ],
+    "Solaris": [
+        "SMART 36"
+    ],
+    "Solena": [
+        "Mini Par 12",
+        "Max Par 20"
+    ],
+    "SoundLight": [
+        "3204R-H"
+    ],
+    "Stage Right": [
+        "Stage Wash 7x10W LED Moving Head",
+        "Mini Beam RGBW"
+    ],
+    "Stairville": [
+        "Octagon Theater 20x6W CW/WW/A",
+        "LED PAR 64",
+        "Remus HexSpot 515",
+        "MH-X60",
+        "AFH-600",
+        "Z120M Par 64 LED RGBW 120W",
+        "LED Flood Panel 150",
+        "LED Bar 240/8",
+        "MH-X20",
+        "AF-180 LED Fogger",
+        "PAR 56",
+        "xBrick Quad 16x8W RGBW",
+        "MH-X50+",
+        "maTrixx SC-100",
+        "Hz-200 Compact Hazer",
+        "LED PAR 56",
+        "MH-X25",
+        "MH-100",
+        "Wild Wash 648 LED White DMX",
+        "RevueLED 120 COB True White",
+        "Stage TRI LED",
+        "BEL6 IP Bar HEX",
+        "VF-1200 DMX VertiFog CO2 FX",
+        "xBrick Full-Colour",
+        "MH-x30 LED Spot",
+        "CLB5 2P RGB WW Compact LED Bar",
+        "RevueLED 120 COB RGBWW",
+        "AF-250",
+        "Wild Wash 132 LED RGB DMX"
+    ],
+    "Starway": [
+        "Servo Color 4K",
+        "SticKolor 1210UHD"
+    ],
+    "Studio Due": [
+        "Light Deflector"
+    ],
+    "Sun Star": [
+        "G-2011 / NOVA"
+    ],
+    "Tecshow": [
+        "Nebula 18",
+        "Nebula 6"
+    ],
+    "TIPTOP Stage Light": [
+        "3*10W Battery LED WEDGE PAR"
+    ],
+    "TMB": [
+        "Solaris Flare"
+    ],
+    "Tomshine": [
+        "3 LED Par Light RGBUV"
+    ],
+    "U`King": [
+        "Mini LED Spot 25W",
+        "Par Light B262",
+        "ZQ-B20 Mini Spider Light",
+        "B117 Par Can 4in1 RGBW 18 LEDs"
+    ],
+    "Ultratec": [
+        "Radiance Hazer"
+    ],
+    "Varytec": [
+        "LED Theater Spot 100",
+        " Easy Move XS HP Wash 7x8W RGBW",
+        "LED Hellball 3 RGB",
+        "BAT.PAR 6 RGBWA",
+        "Hero Wash 340FX RGBW Zoom",
+        "Giga Bar Frost Pix 8 RGB",
+        "BAT.PAR 6 RGBUV",
+        "Giga Bar HEX 3"
+    ],
+    "Velleman": [
+        "Aeron 250 II"
+    ],
+    "Venue": [
+        "ThinTri64",
+        "TriStrip3Z"
+    ]
+}
