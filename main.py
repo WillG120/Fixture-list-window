@@ -40,8 +40,9 @@ class mainWindow(QMainWindow):
         self.searchBar_Manufacturers.textChanged.connect(self.update_manufacturers)
         self.searchBar_Fixtures.textChanged.connect(self.update_fixtures)
         self.manufacturerList.currentItemChanged.connect(self.display_fixtures)
-        self.fixtureList.currentItemChanged.connect(self.display_fixture_info)
+        self.fixtureList.itemClicked.connect(self.display_fixture_info)
         self.fixtureAdd_btn.clicked.connect(self.add_fixture)
+        self.delFixture_btn.clicked.connect(self.delete_fixture)
 
         #Fader sliders
         self.ch1_fader = self.findChild(QSlider, "ch1")
@@ -519,6 +520,14 @@ class mainWindow(QMainWindow):
            
             else:
                 item.setHidden(True)
+
+    def delete_fixture(self):
+        selected_item = self.sceneList.currentItem()
+        row = self.sceneList.row(selected_item)
+        self.sceneList.takeItem(row)
+
+    
+        
 
 #Main code
 app = QApplication(sys.argv)

@@ -1988,7 +1988,7 @@
      <string>Add fixture</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="delFixture_btn">
     <property name="geometry">
      <rect>
       <x>1757</x>
@@ -2001,7 +2001,7 @@
      <string>Delete Fixture</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="fixtureSettings_btn">
     <property name="geometry">
      <rect>
       <x>1859</x>
@@ -2014,7 +2014,7 @@
      <string>Fixture Settings</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="fixtureChannel_lbl">
     <property name="geometry">
      <rect>
       <x>1978</x>
