@@ -2,7 +2,7 @@ import os
 import sys,time
 import json
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QLineEdit, QListWidget, QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel, QTableWidgetItem, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLineEdit, QListWidget, QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel, QTableWidgetItem, QPushButton, QComboBox, QCheckBox, QTabWidget, QWidget
 from PyQt5 import uic
 from datetime import datetime
 
@@ -10,15 +10,37 @@ JSON_DIR = "fixtures"
 
 class FixtureSettingsWindow(QMainWindow):
     def __init__(self):
-        super().__init__()
+        super(FixtureSettingsWindow, self).__init__()
         uic.loadUi("fixtureSettings.ui", self)
+        
+
+        self.fixtureType_lbl = self.findChild(QLabel, "fixtureType_lbl")
+        self.fixtureType = self.findChild(QLabel, "fixtureType")
+        self.fixtureName_lbl = self.findChild(QLabel, "fixtureName_lbl")
+        self.fixtureName = self.findChild(QLineEdit, "fixtureName")
+        self.saveName_btn = self.findChild(QPushButton, "saveName_btn")
+
+        self.settingsTab = self.findChild(QTabWidget, "settingsTab")
+        self.fixtureSettings_tab = self.findChild(QWidget, "fixtureSettings_tab")
+        
+        self.mode_lbl = self.findChild(QLabel, "mode_lbl")
+        self.mode_select = self.findChild(QComboBox, "mode_selection")
+
+        self.dmxAddress_lbl = self.findChild(QLabel, "dmxAddress_lbl")
+        self.dmxAddress = self.findChild(QLineEdit, "DMXAdddress")
+
+        self.showFixture_lbl = self.findChild(QLabel, "showFixture_lbl")
+        self.showFixture = self.findChild(QCheckBox, "showFixture_checkbox")
+
+        #Event handlers
+        self.saveName_btn.clicked.connect(self.)
 
 
 
 
 class mainWindow(QMainWindow):
 
-    
+
     def __init__(self):
         super(mainWindow, self).__init__()
 
