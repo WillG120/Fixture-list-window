@@ -8,6 +8,14 @@ from datetime import datetime
 
 JSON_DIR = "fixtures"
 
+class FixtureSettingsWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("fixtureSettings.ui", self)
+
+
+
+
 class mainWindow(QMainWindow):
 
     
@@ -43,6 +51,7 @@ class mainWindow(QMainWindow):
         self.fixtureList.itemClicked.connect(self.display_fixture_info)
         self.fixtureAdd_btn.clicked.connect(self.add_fixture)
         self.delFixture_btn.clicked.connect(self.delete_fixture)
+        self.fixtureSettings_btn.clicked.connect(self.fixture_settings)
 
         #Fader sliders
         self.ch1_fader = self.findChild(QSlider, "ch1")
@@ -459,11 +468,74 @@ class mainWindow(QMainWindow):
             if 0 <= current_index < len(fixture_files):
                 file_path = os.path.join(JSON_DIR, fixture_files[current_index])
 
+        elif index == 7:
+            file_path = os.path.join(JSON_DIR, "lightcan.json")
 
+        elif index == 8:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["ls-1200d-pro.json", "nova-p300c.json", "ls-600x-pro.json", "ls-300x.json", "ls-600d.json", "ls-600d-pro.json"]
+
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 9:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["l5-c.json", "broadcaster-2-plus.json", "l7-c.json", "skypanel-s30c.json", "skypanel-s120c.json", "skypanel-s360c.json", "skypanel-s60c.json", "l10-c.json"]
+            
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 10:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["fp2-helios-tube.json", "fp5-nyx-bulb.json", "fp1-titan-tube.json", "fp3-hyperion-tube.json", "ax3-lightdrop.json"]
+
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 11:
+            file_path = os.path.join(JSON_DIR, "boston-60.json")
+
+        elif index == 12:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["tdc-triple-burst.json", "compar-20.json"]
+
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 13:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["diablo-tc.json", "diablo-s.json", "magicblade-fx.json"]
+
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 14:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["triple-flex-centre-pro-led.json", "h2000-faze-machine.json", "panther-7r.json", "pls25-par.json"]
+
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 15:
+            current_index = self.fixtureList.currentRow()
+
+            fixture_files = ["ls90.json", "lp001.json"]
+
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 16:
+            file_path = os.path.join(JSON_DIR, "companion-v2.json")
 
         return file_path, index_num
     
-    def display_fixture_info(self, item):
+    def display_fixture_info(self, item): #Displays fixture categories and modes in table
 
         self.json_load(index_num)
         
@@ -521,11 +593,14 @@ class mainWindow(QMainWindow):
             else:
                 item.setHidden(True)
 
-    def delete_fixture(self):
+    def delete_fixture(self): #Delete fixture from sceneList
         selected_item = self.sceneList.currentItem()
         row = self.sceneList.row(selected_item)
         self.sceneList.takeItem(row)
 
+    def fixture_settings(self): #Open fixture settings window - linked to selected fixture
+        self.settings_window = FixtureSettingsWindow()
+        self.settings_window.show()
     
         
 
