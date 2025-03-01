@@ -6,9 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1232</width>
-    <height>1133</height>
+    <width>812</width>
+    <height>560</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>812</width>
+    <height>560</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>812</width>
+    <height>560</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>400</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,13 +37,13 @@
      <rect>
       <x>40</x>
       <y>20</y>
-      <width>121</width>
+      <width>800</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
      </font>
     </property>
     <property name="text">
@@ -38,7 +56,7 @@
       <x>11</x>
       <y>60</y>
       <width>791</width>
-      <height>491</height>
+      <height>471</height>
      </rect>
     </property>
     <property name="font">
@@ -50,7 +68,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -62,104 +80,248 @@
      <attribute name="title">
       <string>Fixture Settings</string>
      </attribute>
-     <widget class="QComboBox" name="mode_selection">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>34</y>
-        <width>261</width>
-        <height>51</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="mode_lbl">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>50</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Mode</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="DMXAddress">
-      <property name="geometry">
-       <rect>
-        <x>212</x>
-        <y>90</y>
-        <width>110</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="dmxAddress_lbl">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>90</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>DMX Address</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="showFixture_lbl">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>130</y>
-        <width>181</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Show fixture in workspace</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="showFixture_checkbox">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>130</y>
-        <width>87</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QLabel" name="mode_lbl">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="dmxAddress_lbl">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>DMX Address</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="DMXAddress"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="showFixture_lbl">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Show fixture in workspace</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QComboBox" name="mode_selection"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="QCheckBox" name="showFixture_checkbox">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QPushButton" name="dmx_update">
+        <property name="text">
+         <string>Update</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
     <widget class="QWidget" name="patchSettings_Tab">
      <attribute name="title">
       <string>Patch Settings</string>
      </attribute>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1">
+       <widget class="QLabel" name="fixtureChannels_lbl">
+        <property name="text">
+         <string>Fixture Channels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="faderPatch_lbl">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Fader Patch</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QComboBox" name="channelSelection">
+        <item>
+         <property name="text">
+          <string>No channel</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 6</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 7</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 8</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 9</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 10</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 11</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 12</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 13</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 14</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 15</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 17</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 18</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 19</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 20</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 21</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 22</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 23</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 24</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 25</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 26</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 27</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Channel 28</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QListWidget" name="listWidget"/>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QLabel" name="fixtureType">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>150</x>
       <y>10</y>
       <width>491</width>
       <height>16</height>
@@ -167,7 +329,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
      </font>
     </property>
     <property name="text">
@@ -185,7 +347,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
      </font>
     </property>
     <property name="text">
@@ -195,24 +357,74 @@
    <widget class="QLineEdit" name="fixtureName">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>150</x>
       <y>30</y>
       <width>231</width>
       <height>21</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="saveName_btn">
     <property name="geometry">
      <rect>
-      <x>412</x>
+      <x>380</x>
       <y>26</y>
       <width>113</width>
       <height>32</height>
      </rect>
     </property>
+    <property name="baseSize">
+     <size>
+      <width>400</width>
+      <height>500</height>
+     </size>
+    </property>
     <property name="text">
      <string>Save Name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selectedFixture_lbl">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>10</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Selected fixture:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="selectedFixture">
+    <property name="geometry">
+     <rect>
+      <x>614</x>
+      <y>16</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="close_btn">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>530</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Close</string>
     </property>
    </widget>
   </widget>
