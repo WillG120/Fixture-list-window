@@ -35,8 +35,8 @@
    <widget class="QLabel" name="fixtureName_lbl">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>20</y>
+      <x>43</x>
+      <y>2</y>
       <width>800</width>
       <height>31</height>
      </rect>
@@ -81,6 +81,28 @@
       <string>Fixture Settings</string>
      </attribute>
      <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="1">
+       <widget class="QLabel" name="showFixture_lbl">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Show fixture in workspace</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="DMXAddress">
+        <property name="placeholderText">
+         <string>This program only supports one universe (max. 512)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QComboBox" name="mode_selection"/>
+      </item>
       <item row="0" column="1">
        <widget class="QLabel" name="mode_lbl">
         <property name="font">
@@ -105,24 +127,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="DMXAddress"/>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="showFixture_lbl">
-        <property name="font">
-         <font>
-          <pointsize>15</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Show fixture in workspace</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QComboBox" name="mode_selection"/>
-      </item>
       <item row="2" column="2">
        <widget class="QCheckBox" name="showFixture_checkbox">
         <property name="text">
@@ -137,6 +141,13 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
     <widget class="QWidget" name="patchSettings_Tab">
@@ -144,14 +155,24 @@
       <string>Patch Settings</string>
      </attribute>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="1">
-       <widget class="QLabel" name="fixtureChannels_lbl">
+      <item row="0" column="6">
+       <widget class="QPushButton" name="updateFader">
         <property name="text">
-         <string>Fixture Channels</string>
+         <string>Update</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="2" column="5">
+       <widget class="QListWidget" name="fixtureChannels_list"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="fixtureChannels_lbl">
+        <property name="text">
+         <string>Available Channels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
        <widget class="QLabel" name="faderPatch_lbl">
         <property name="font">
          <font>
@@ -163,7 +184,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
+      <item row="0" column="5">
        <widget class="QComboBox" name="channelSelection">
         <item>
          <property name="text">
@@ -312,8 +333,12 @@
         </item>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QListWidget" name="listWidget"/>
+      <item row="3" column="5">
+       <widget class="QPushButton" name="update_availableChannels">
+        <property name="text">
+         <string>Update </string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -336,28 +361,10 @@
      <string>fixtureType</string>
     </property>
    </widget>
-   <widget class="QLabel" name="fixtureType_lbl">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>0</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Fixture Type: </string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="fixtureName">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>40</x>
       <y>30</y>
       <width>231</width>
       <height>21</height>
@@ -367,7 +374,7 @@
    <widget class="QPushButton" name="saveName_btn">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>270</x>
       <y>26</y>
       <width>113</width>
       <height>32</height>
@@ -425,6 +432,38 @@
     </property>
     <property name="text">
      <string>Close</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="charLimit_lbl">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Maximum of 16 characters</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="noText_lbl">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Name cannot be blank</string>
     </property>
    </widget>
   </widget>

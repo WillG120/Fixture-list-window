@@ -35,6 +35,7 @@ class mainWindow(QMainWindow):
         self.delFixture_btn = self.findChild(QPushButton, "delFixture_btn")
         self.fixtureSettings_btn = self.findChild(QPushButton, 
                                                   "fixtureSettings_btn")
+        self.fixtureSettings_btn.setEnabled(False)
 
         self.fixtureChannel_lbl = self.findChild(QPushButton, 
                                                  "fixtureChannel_lbl")
@@ -58,6 +59,9 @@ class mainWindow(QMainWindow):
         self.delFixture_btn.clicked.connect(self.delete_fixture)
         self.fixtureSettings_btn.clicked.connect(self.fixture_settings)
         self.reset_btn.clicked.connect(self.reset_faders)
+        self.sceneList.currentItemChanged.connect(self.sceneList_item_clicked)
+        self.blackout_btn.clicked.connect(self.blackout_btn_clicked)
+        
 
         #Wheel Dials
         self.redWheel = self.findChild(QDial, "redWheel")
@@ -630,8 +634,11 @@ class mainWindow(QMainWindow):
         self.json_load(index_num)
         
         with open(file_path, 'r') as file:
+           global data
            data = json.load(file)
-           
+
+           global modes
+        
            categories = ", ".join(data.get("categories", []))
            modes = ", ".join(mode["name"] for mode in data.get("modes", []))
 
@@ -702,8 +709,8 @@ class mainWindow(QMainWindow):
                 item.setHidden(True)
 
     def delete_fixture(self): #Delete fixture from sceneList
-        selected_item = self.sceneList.currentItem()
-        row = self.sceneList.row(selected_item)
+        current_item = self.sceneList.currentItem()
+        row = self.sceneList.row(current_item)
         self.sceneList.takeItem(row)
 
         print(f"{selected_item} deleted from sceneList")
@@ -713,7 +720,8 @@ class mainWindow(QMainWindow):
         self.settings_window = FixtureSettingsWindow()
         self.settings_window.show()
 
-    def reset_faders(self):
+    def reset_faders(self): #Resets all faders to position 0
+        
         self.ch1_fader.setSliderPosition(0)
         self.ch2_fader.setSliderPosition(0)
         self.ch3_fader.setSliderPosition(0)
@@ -744,6 +752,52 @@ class mainWindow(QMainWindow):
         self.ch28_fader.setSliderPosition(0)
         self.master_fader.setSliderPosition(0)
 
+        fader_pos = (self.ch1_fader.value(), self.ch2_fader.value(), #TESTING ONLY
+                     self.ch3_fader.value(), self.ch4_fader.value(), 
+                     self.ch5_fader.value(), self.ch6_fader.value(), 
+                     self.ch7_fader.value(), self.ch8_fader.value(), 
+                     self.ch9_fader.value(), self.ch10_fader.value(), 
+                     self.ch11_fader.value(), self.ch12_fader.value(), 
+                     self.ch13_fader.value(), self.ch14_fader.value(), 
+                     self.ch15_fader.value(), self.ch16_fader.value(), 
+                     self.ch17_fader.value(), self.ch18_fader.value(), 
+                     self.ch19_fader.value(), self.ch20_fader.value(), 
+                     self.ch21_fader.value(), self.ch22_fader.value(), 
+                     self.ch23_fader.value(), self.ch24_fader.value(), 
+                     self.ch25_fader.value(), self.ch26_fader.value(), 
+                     self.ch27_fader.value(), self.ch28_fader.value(), 
+                     self.master_fader.value())
+
+        print(f"TESTING - reset: fader pos:{fader_pos}")
+
+        if fader_pos == (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0):
+            print("Reset successful")
+        else:
+            print("Reset error")
+
+    def sceneList_item_clicked(self, index): #Enables fixture settings button when item is selected
+        global selected_item
+        selected_item = self.sceneList.currentItem().text()
+
+        print(selected_item)
+        
+        if index != None:
+            self.fixtureSettings_btn.setEnabled(True)
+
+    def blackout_btn_clicked(self): #Sets master fader only to positon 0
+        self.master_fader.setSliderPosition(0)
+
+        print(f"TESTING - blackout: master pos:{self.master_fader.value()}")
+        
+        if self.master_fader.value() == 0:
+            print("Blackout successful")
+        else:
+            print("Blackout error")
+
+
+
+
 class FixtureSettingsWindow(QMainWindow):
     
     def __init__(self):
@@ -760,6 +814,10 @@ class FixtureSettingsWindow(QMainWindow):
                                                   "selectedFixture_lbl")
         self.selectedFixture = self.findChild(QLineEdit, "selectedFixture")
         self.close_btn = self.findChild(QPushButton, "close_btn")
+        self.charLimit_lbl = self.findChild(QLabel, "charLimit_lbl")
+        self.charLimit_lbl.setHidden(True)
+        self.noText_lbl = self.findChild(QLabel, "noText_lbl")
+        self.noText_lbl.setHidden(True)
 
         self.fixtureSettings_tab = self.findChild(QWidget, 
                                                   "fixtureSettings_tab")
@@ -768,6 +826,7 @@ class FixtureSettingsWindow(QMainWindow):
         self.mode_select = self.findChild(QComboBox, "mode_selection")
         self.dmxAddress_lbl = self.findChild(QLabel, "dmxAddress_lbl")
         self.dmxAddress = self.findChild(QLineEdit, "DMXAddress")
+        self.dmx_update = self.findChild(QPushButton, "dmx_update")
         self.showFixture_lbl = self.findChild(QLabel, "showFixture_lbl")
         self.showFixture = self.findChild(QCheckBox, "showFixture_checkbox")
 
@@ -779,19 +838,68 @@ class FixtureSettingsWindow(QMainWindow):
                                                   "fixtureChannels_lbl")
         self.fixtureChannels_list = self.findChild(QListWidget, 
                                                    "fixtureChannels_list")
+        self.update_availableChannels = self.findChild(QPushButton, 
+                                                       "update_availableChannels")
+        self.updateFader = self.findChild(QPushButton, "updateFader")
+        self.main_window = mainWindow
         
-        
+        global selected_item
+        self.selectedFixture.setText(selected_item)
 
         #Event handlers
         self.saveName_btn.clicked.connect(self.save_name)
         self.close_btn.clicked.connect(self.close_settings_window)
+        self.dmx_update.clicked.connect(self.update_fixture_dmx)
+        self.updateFader.clicked.connect(self.fader_patch)
+        self.update_availableChannels.clicked.connect(self.update_available_channels)
+        mode_items = modes.split(", ")
+        self.mode_select.addItems(mode_items)
 
     def save_name(self):
         name = self.fixtureName.text()
-        self.fixtureType.setText(name)
+        
+        if len(name) <= 16:
+            self.charLimit_lbl.setHidden(True)
 
+            if not name:
+                self.noText_lbl.setHidden(False)
+            else:
+                self.fixtureType.setText(name)
+        else:
+            self.charLimit_lbl.setHidden(False)
+        if not name:
+            self.noText_lbl.setHidden(False)
+                
     def close_settings_window(self):
         self.close()
+
+    def update_fixture_dmx(self):
+        entry = int(self.dmxAddress.text())
+        fixture = selected_item
+
+        if entry > 512:
+            print("This program only supports one universe")
+        
+        else:
+            print(f"DMX Address for {fixture} updated to: {entry}")
+
+    def fader_patch(self):
+        global selected_item
+        fader = self.faderPatch.currentText()
+
+        print(f"{selected_item} patched to {fader}")
+        
+    def update_available_channels(self):
+        global data
+
+        availableChannels = ", ".join(data.get("availableChannels", []))
+        print(f"Available Channels: {availableChannels}")
+        
+        channels = availableChannels.split(", ")
+        self.fixtureChannels_list.addItems(channels)
+
+
+
 
 
 #Main code
