@@ -6,7 +6,8 @@ from PyQt5.QtWidgets import (QMainWindow, QApplication, QLineEdit, QListWidget,
     QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel, QTableWidgetItem, 
     QPushButton, QComboBox, QCheckBox, QTabWidget, QWidget, QDial)
 from PyQt5 import uic
-from fader_controls import faderControls
+from PyQt5.QtCore import QRectF
+
 
 JSON_DIR = "fixtures"
 
@@ -37,10 +38,19 @@ class mainWindow(QMainWindow):
                                                   "fixtureSettings_btn")
         self.fixtureSettings_btn.setEnabled(False)
 
-        self.fixtureChannel_lbl = self.findChild(QPushButton, 
+        self.fixtureChannel_lbl = self.findChild(QLabel, 
                                                  "fixtureChannel_lbl")
         self.blackout_btn = self.findChild(QPushButton, "blackout_btn")
         self.reset_btn = self.findChild(QPushButton, "reset_btn")
+
+        global channel_lbl
+        channel_lbl = self.fixtureChannel_lbl
+
+        self.original_size = self.size()
+
+        self.widget_data = {}
+        for widget in self.findChildren(QWidget):
+            self.widget_data[widget] = (widget.geometry(), self.size())
 
         
         #Event Handlers
@@ -59,7 +69,7 @@ class mainWindow(QMainWindow):
         self.delFixture_btn.clicked.connect(self.delete_fixture)
         self.fixtureSettings_btn.clicked.connect(self.fixture_settings)
         self.reset_btn.clicked.connect(self.reset_faders)
-        self.sceneList.currentItemChanged.connect(self.sceneList_item_clicked)
+        self.sceneList.itemClicked.connect(self.sceneList_item_clicked)
         self.blackout_btn.clicked.connect(self.blackout_btn_clicked)
         
 
@@ -474,6 +484,8 @@ class mainWindow(QMainWindow):
 
         global index_num
         index_num = index
+
+        current_index = self.fixtureList.currentRow()
         
         if index == 0:
             file_path = os.path.join(JSON_DIR, "spica-250m.json")
@@ -486,7 +498,7 @@ class mainWindow(QMainWindow):
                 
         elif index == 3:
             
-            current_index = self.fixtureList.currentRow()
+            
 
             fixture_files = ["alc4.json", "europe-105.json", "warp-m.json"]
             
@@ -619,6 +631,474 @@ class mainWindow(QMainWindow):
         elif index == 16:
             file_path = os.path.join(JSON_DIR, "companion-v2.json")
 
+        elif index == 17:
+            fixture_files = ['hotbox-exa.json', 'hotbox-rgbw.json', 'puck-rgbaw.json', 'rokbox-rgbw.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 18:
+            fixture_files = ['crazy-spot-30.json', 'silentpar-12x10w-5in1.json', 'silentpar-12x10w-6in1.json', 'silentpar-12x3w-3in1.json', 'silentpar-5x10w-5in1.json', 'silentpar-5x10w-6in1.json', 'silentpar-5x3w-3in1.json', 'silentpar-7x10w-5in1.json', 'silentpar-7x10w-6in1.json', 'silentpar-7x3w-3in1.json', 'xtrem-led.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 19:
+            fixture_files = ['beam-fury-1.json', 'beamspot1-dmx-fc.json', 'bt-coloray-120r.json', 'bt-coloray-18fcr.json', 'bt-coloray-60r.json', 'bt-ledrotor.json', 'bt-stagepar-6in1.json', 'btx-cirrus-ii.json', 'btx-titan.json', 'cob-slim-100-rgb.json', 'pro-beamer-zoom-indoor.json', 'pro-beamer-zoom-outdoor.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 20:
+            fixture_files = ['auro-beam-150.json', 'auro-spot-100.json', 'auro-spot-200.json', 'auro-spot-300.json', 'auro-spot-400.json', 'flash-matrix-250.json', 'flat-par-can-rgb-10-ir.json', 'flat-par-can-tri-5x-3w-ir.json', 'flat-par-can-tri-7x-3w-ir.json', 'flat-pro-18.json', 'flat-pro-flood-600-ip65.json', 'flat-pro-flood-ip65-tri.json', 'gobo-scanner-80.json', 'hydrabeam-100.json', 'hydrabeam-300-rgbw.json', 'hydrabeam-400-rgbw.json', 'instant-air-1000-pro.json', 'instant-air-2000-pro.json', 'instant-hazer-1500-t-pro.json', 'ioda-1000-rgb.json', 'ioda-400-rgy.json', 'ioda-600-rgb.json', 'multi-fx-bar.json', 'multi-par-cob-1.json', 'nanospot-120.json', 'outdoor-par-tri-12.json', 'q-spot-40-cw.json', 'q-spot-40-rgbw.json', 'root-par-6.json', 'steam-wizard-1000.json', 'steam-wizard-2000.json', 'storm.json', 'thunder-wash-100-rgb.json', 'thunder-wash-100-w.json', 'thunder-wash-600-rgb.json', 'thunder-wash-600-rgbw.json', 'thunder-wash-600-w.json', 'ts-100-ww.json', 'ts-200-fc.json', 'ts-60-rgbw.json', 'zenit-w600.json', 'zenit-z120.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 21:
+            fixture_files = ['colorband-pix-ip.json', 'colorband-pix.json', 'corepar-uv-usb.json', 'dmx-4.json', 'eve-p-100-ww.json', 'eve-p-130-rgb.json', 'freedom-h1.json', 'geyser-rgb.json', 'gigbar-2.json', 'hurricane-1600.json', 'hurricane-haze-1dx.json', 'hurricane-haze-2d.json', 'intimidator-spot-110.json', 'intimidator-spot-160.json', 'intimidator-spot-260.json', 'kinta-x.json', 'led-par-64-tri-b.json', 'megastrobe-fx12.json', 'motiondrape-led.json', 'slimpar-pro-h-usb.json', 'slimpar-pro-qz12.json', 'slimpar-pro-rgba.json', 'slimpar-pro-w.json', 'slimpar-q12-bt.json', 'slimpar-t12-bt.json', 'slimpar-t12-usb.json', 'washfx.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 22:
+            fixture_files = ['colorado-1-solo.json', 'colordash-batten-quad-6.json', 'colordash-s-par-1.json', 'ovation-f-915vw.json', 'rogue-r1-wash.json', 'rogue-r2-wash.json', 'vesuvio-rgba.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 23:
+            fixture_files = ['color-force-ii-12.json', 'color-force-ii-48.json', 'color-force-ii-72.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 24:
+            file_path = os.path.join(JSON_DIR, 'par-18x15w-rgbwa.json')
+
+        elif index == 25:
+            fixture_files = ['a-leda-b-eye-k10.json', 'a-leda-b-eye-k20.json', 'alpha-spot-qwo-800.json', 'sharpy.json', 'show-batten-100.json', 'spheriscan.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 26:
+            file_path = os.path.join(JSON_DIR, 'hera.json')
+
+        elif index == 27:
+            file_path = os.path.join(JSON_DIR, 'prospot-250-lx.json')
+
+        elif index == 28:
+            fixture_files = ['irled64-18x12six.json', 'irledflat-5x12SIXb.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 29:
+            fixture_files = ['dled4-bi.json', 'dled7-bi.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 30:
+            fixture_files = ['softled-4-vw.json', 'softled-8-vw.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 31:
+            fixture_files = ['maxi-mix.json', 'mini-mix.json', 'sl1-mix.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 32:
+            fixture_files = ['scena-led-150.json', 'xr1200-wash.json', 'xr4-spot.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 33:
+            fixture_files = ['acl-360-roller.json', 'cuepix-blinder-ww2.json', 'cuepix-blinder-ww4.json', 'design-led-par-zoom.json', 'fuze-par-z60ip.json', 'platinum-hfx.json', 'platinum-seven.json', 'platinum-spot-15r-pro.json', 'proteus-hybrid.json', 'sixpar-100-ip.json', 'sixpar-100.json', 'sixpar-200-ip.json', 'sixpar-200-wmg.json', 'sixpar-200.json', 'sixpar-300-ip.json', 'sixpar-300-wmg.json', 'sixpar-300.json', 'uni-bar.json', 'zw19.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 34:
+            fixture_files = ['stealth-beam.json', 'stealth-wash-zoom.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 35:
+            file_path = os.path.join(JSON_DIR, '8x-3w-led-spider-effect.json')
+
+        elif index == 36:
+            file_path = os.path.join(JSON_DIR, 'duo-q-beam-bar.json')
+
+        elif index == 37:
+            fixture_files = ['gigabar.json', 'rgb-power-batten.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 38:
+            fixture_files = ['colorsource-par-deep-blue.json', 'colorsource-par.json', 'colorsource-spot-deep-blue.json', 'colorsource-spot.json', 'fos4PD16.json', 'fos4PD24.json', 'fos4PD8.json', 'fos4PL16.json', 'fos4PL24.json', 'fos4PL8.json', 'source-4wrd-color-ii.json', 'source-four-led-series-2-daylight-hd.json', 'source-four-led-series-2-lustr.json', 'source-four-led-series-2-tungsten-hd.json', 'source-four-led-series-3-daylight-hdr.json', 'source-four-led-series-3-lustr-x8.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 39:
+            fixture_files = ['edx-4.json', 'led-7c-7-silent-slim.json', 'led-b-40.json', 'led-bar-12-qcl-rgba-bar.json', 'led-bar-3-hcl-bar.json', 'led-bar-6-qcl-rgbw.json', 'led-big-party-spot.json', 'led-big-party-tcl-spot.json', 'led-dmx-pixel-tube-16-rgb-ip20.json', 'led-fe-1500.json', 'led-h2o.json', 'led-kls-801.json', 'led-ml-56-rgbw.json', 'led-par-56-tcl.json', 'led-party-spot.json', 'led-party-tcl-spot.json', 'led-pix-12-hcl.json', 'led-pix-144.json', 'led-ps-4-hcl.json', 'led-sls-12-bcl.json', 'led-sls-5-bcl.json', 'led-sls-6-uv-floor.json', 'led-svf-1.json', 'led-tha-100f-mk2.json', 'led-tha-100f.json', 'led-theatre-cob-200-rgb-ww.json', 'led-tl-3-rgb-uv.json', 'led-tl-4-qcl.json', 'led-tmh-14.json', 'led-tmh-17.json', 'led-tmh-18.json', 'led-tmh-7.json', 'led-tmh-8.json', 'led-tmh-9.json', 'led-tmh-x12.json', 'led-tmh-x25.json', 'led-z-200-tcl.json', 'md-2030.json', 'multiflood-pro-ip-smd-rgbw.json', 'n-150.json', 'tmh-xb-130.json', 'ts-2.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 40:
+            fixture_files = ['par12x12.json', 'par5x12.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 41:
+            file_path = os.path.join(JSON_DIR, 'colours-archspot-54-rgb.json')
+
+        elif index == 42:
+            fixture_files = ['gasprojector-gx2.json', 'x2-wave-flamer.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 43:
+            file_path = os.path.join(JSON_DIR, 'led-rgbw-54x3-par64.json')
+
+        elif index == 44:
+            file_path = os.path.join(JSON_DIR, 'p3-color.json')
+
+        elif index == 45:
+            fixture_files = ['led-moving-head-150w.json', 'led-par-64-cob-300w-rgbwauv.json', 'led-par-64-slim-7x10w-rgbw-mk2.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 46:
+            file_path = os.path.join(JSON_DIR, '600xb.json')
+
+        elif index == 47:
+            fixture_files = ['par-led-7x10w.json', 'par-led-7x12w.json', 'par-led-7x9w.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 48:
+            fixture_files = ['led-pot-12-1w-rgbw.json', 'led-pot-12x1w-qcl-rgb-ww-15.json', 'led-pot-12x1w-qcl-rgb-ww-40.json', 'picobeam-30-quad-led.json', 'picobeam-60-cob-rgbw.json', 'picoblade-fx-4x10w-rgbw.json', 'picospot-20-led.json', 'picospot-45-led.json', 'picowash-40-pixel-quad-led.json', 'separ-hex-led-rgbaw-uv.json', 'separ-quad-led-rgb-uv.json', 'separ-quad-led-rgbw.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 49:
+            fixture_files = ['dj-scan-250.json', 'dmh-75-i-led-moving-head.json', 'pro-slim-par-7-hcl.json', 'sc-250-scanner.json', 'stb-648-led-strobe-smd-5050.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 50:
+            file_path = os.path.join(JSON_DIR, 'g-flame.json')
+
+        elif index == 51:
+            file_path = os.path.join(JSON_DIR, 'precision-dmx.json')
+
+        elif index == 52:
+            fixture_files = ['4-channel-dimmer-pack.json', 'cmy-fader.json', 'color-temperature-fader.json', 'cw-ww-fader.json', 'desk-channel.json', 'drgb-fader.json', 'drgbw-fader.json', 'grbw-fader.json', 'pan-tilt.json', 'rgb-fader.json', 'rgba-fader.json', 'rgbd-fader.json', 'rgbw-fader.json', 'rgbwauv-fader.json', 'rgbww-fader.json', 'strobe.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 53:
+            fixture_files = ['ip-spot-bat.json', 'ip-spot-pro.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 54:
+            fixture_files = ['force-120.json', 'impression-fr1.json', 'impression-laser.json', 'impression-spot-one.json', 'impression-x4-bar-10.json', 'jdc1.json', 'knv-arc.json', 'knv-cube.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 55:
+            file_path = os.path.join(JSON_DIR, 'gls-4-led-stage-4.json')
+
+        elif index == 56:
+            file_path = os.path.join(JSON_DIR, 'kolorado-4000.json')
+
+        elif index == 57:
+            fixture_files = ['pixel-tube.json', 'ventilator.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 58:
+            file_path = os.path.join(JSON_DIR, 'base-hazer-pro.json')
+
+        elif index == 59:
+            fixture_files = ['bee-50-c.json', 'bumble-bee-25-cx.json', 'hornet-200-c.json', 'hornet-200-cx.json', 'super-hornet-575-c.json', 'wasp-100-c.json', 'wasp-100-cx.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 60:
+            file_path = os.path.join(JSON_DIR, 'hy-g60.json')
+
+        elif index == 61:
+            file_path = os.path.join(JSON_DIR, '40w-beam-spot-light-rgbw.json')
+
+        elif index == 62:
+            fixture_files = ['lp64-led-promo.json', 'ls-005led.json', 'par-mini-rgb3.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 63:
+            fixture_files = ['2bright-par-18-ip.json', 'led-accu-par.json', 'teatro-led-spot-100-fr.json', 'teatro-led-spot-100-pc.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 64:
+            file_path = os.path.join(JSON_DIR, 'stryder-sfb150.json')
+
+        elif index == 65:
+            fixture_files = ['iw-340-rdm.json', 'iw-720-rdm.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 66:
+            fixture_files = ['jbled-a7.json', 'varyscan-p7.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 67:
+            fixture_files = ['imove-5s.json', 'irock-5c.json', 'twin-effect-laser.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 68:
+            file_path = os.path.join(JSON_DIR, 'gobotracer.json')
+
+        elif index == 69:
+            fixture_files = ['celeb-250-led-dmx.json', 'celeb-450-led-dmx.json', 'celeb-led-201-dmx.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 70:
+            fixture_files = ['18leds-par-light.json', 'dj-lights.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 71:
+            fixture_files = ['cs-1000rgb.json', 'ds-1000rgb.json', 'el-400rgb-mk2.json', 'shownet.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 72:
+            fixture_files = ['slimline-12q5-rgba.json', 'slimline-12q5-rgbw.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 73:
+            file_path = os.path.join(JSON_DIR, 'diamond-pro-2-8.json')
+
+        elif index == 74:
+            file_path = os.path.join(JSON_DIR, 'aurora.json')
+
+        elif index == 75:
+            file_path = os.path.join(JSON_DIR, 'led-par-18x3w-uv.json')
+
+        elif index == 76:
+            fixture_files = ['cls-nano-cob.json', 'dj-scan-led.json', 'easy-wash-quad-led.json', 'led-nano-par.json', 'led-par-56.json', 'platinum-mini-tri-par.json', 'vector-haze-1-0.json', 'vector-pixel-bar-18x-15w-rgbwa.json', 'vega-bat-1.json', 'vega-zoom-wash.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 77:
+            file_path = os.path.join(JSON_DIR, 'beam-230.json')
+
+        elif index == 78:
+            file_path = os.path.join(JSON_DIR, 'washx-21.json')
+
+        elif index == 79:
+            fixture_files = ['litemat-plus-1.json', 'litemat-plus-2.json', 'litemat-plus-2l.json', 'litemat-plus-3.json', 'litemat-plus-4.json', 'litemat-plus-8.json', 'litetile-plus-4.json', 'litetile-plus-8.json', 's2-litemat-1.json', 's2-litemat-2.json', 's2-litemat-2l.json', 's2-litemat-3.json', 's2-litemat-4.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 80:
+            fixture_files = ['mini-beam-rgbw.json', 'mini-gobo-moving-head-light.json', 'mini-moving-head-rgbw.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 81:
+            fixture_files = ['cryofog.json', 'viper-nt.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 82:
+            fixture_files = ['actionpanel-dual-color.json', 'actionpanel-full-color.json', 'superpanel-dual-color-60.json', 'superpanel-full-color-60.json', 'superpanelpro-dual-color-30.json', 'superpanelpro-full-color-30.json', 'ultrapanel-dual-color-60.json', 'ultrapanel-full-color-60.json', 'ultrapanelpro-dual-color-30.json', 'ultrapanelpro-full-color-30.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 83:
+            fixture_files = ['psyco2jet.json', 'smokejet.json', 'stage-flame.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 84:
+            fixture_files = ['mbar-381-ip.json', 'superbat-led-72.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 85:
+            fixture_files = ['atomic-3000.json', 'mac-250-beam.json', 'mac-250-krypton.json', 'mac-250-wash.json', 'mac-600.json', 'mac-700-wash.json', 'mac-aura.json', 'mac-axiom-hybrid.json', 'mac-encore-performance.json', 'mac-viper-airfx.json', 'mac-viper-performance.json', 'mac-viper-wash.json', 'magnum-2500-hz.json', 'mania-scx500.json', 'mx-10-extreme.json', 'roboscan-812.json', 'rush-mh-2-wash.json', 'rush-mh-3-beam.json', 'rush-mh-5-profile.json', 'rush-mh-7-hybrid.json', 'rush-par-2-rgbw-zoom.json', 'rush-scanner-1-led.json', 'stagebar-54l.json', 'stagebar-54s.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 86:
+            fixture_files = ['hazer-atmosphere-aps.json', 'theone-atmospheric-generator.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 87:
+            fixture_files = ['led-par-light-372.json', 'zoom-360.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 88:
+            fixture_files = ['framebot-600.json', 'mw1.json', 'spotbot-led-cmy-300.json', 'washbot-led-cymk-300.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 89:
+            file_path = os.path.join(JSON_DIR, 'ivl-carre.json')
+
+        elif index == 90:
+            fixture_files = ['led-bar-123-fc-ip.json', 'pat-252.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 91:
+            file_path = os.path.join(JSON_DIR, 'orcan2.json')
+
+        elif index == 92:
+            fixture_files = ['pt-rz120.json', 'pt-rz120l.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 93:
+            file_path = os.path.join(JSON_DIR, 'box-leds-batterie-6x15w.json')
+
+        elif index == 94:
+            file_path = os.path.join(JSON_DIR, 'wash-84w.json')
+
+        elif index == 95:
+            file_path = os.path.join(JSON_DIR, 'xs-250-spot.json')
+
+        elif index == 96:
+            fixture_files = ['diamond19.json', 'pixpan16.json', 'polar3000.json', 'smartbat.json', 'v700spot.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 97:
+            fixture_files = ['lux-ld01.json', 'lux-ld30w.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 98:
+            file_path = os.path.join(JSON_DIR, 'gm107.json')
+
+        elif index == 99:
+            fixture_files = ['colorspot-2500e-at.json', 'dj-scan-250-xt.json', 'robin-300e-wash.json', 'robin-600e-spot.json', 'robin-ledbeam-100.json', 'robin-ledbeam-150.json', 'robin-ledwash-600.json', 'robin-parfect-150.json', 'robin-t1-profile.json', 'robin-viva-cmy.json', 'spot-160-xt.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 100:
+            file_path = os.path.join(JSON_DIR, '613sx.json')
+
+        elif index == 101:
+            file_path = os.path.join(JSON_DIR, 'rockpar50.json')
+
+        elif index == 102:
+            file_path = os.path.join(JSON_DIR, 'p-5.json')
+
+        elif index == 103:
+            fixture_files = ['led-flat-par-12x3w-rgbw.json', 'led-flat-par-18x18w.json', 'led-flat-par-54x3w.json', 'led-flat-par-7x18w-rgbwa-uv-light.json', 'led-par-18x18w.json', 'led-spot-60w.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 104:
+            file_path = os.path.join(JSON_DIR, 'sl-nitro-510c.json')
+
+        elif index == 105:
+            file_path = os.path.join(JSON_DIR, 'lb-4390.json')
+
+        elif index == 106:
+            file_path = os.path.join(JSON_DIR, 'litebar-h9.json')
+
+        elif index == 107:
+            fixture_files = ['accent-spot-q4-rgbw.json', 'archi-painter-24-8-q4.json', 'atmos-2000.json', 'club-par-12-4-rgbw.json', 'club-par-12-6-rgbwauv.json', 'compact-par-18.json', 'compact-par-7-tri.json', 'dim-4lc.json', 'dominator.json', 'explorer-250-wash-pro.json', 'horizon-8.json', 'kanjo-spot-60.json', 'kanjo-wash-rgb.json', 'led-blinder-2-cob.json', 'led-light-bar-rgb-v3.json', 'performer-2500.json', 'phantom-140-led-spot.json', 'phantom-25-led-wash.json', 'phantom-3r-beam.json', 'phantom-50-led-spot.json', 'phantom-matrix-fx.json', 'pixel-bar-12-mkii.json', 'sunraise-led.json', 'sunstrip-active-mkii.json', 'xs-1-rgbw.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 108:
+            fixture_files = ['sparkular-fall.json', 'sparkular.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 109:
+            file_path = os.path.join(JSON_DIR, 'mx-indigo-6000xe.json')
+
+        elif index == 110:
+            file_path = os.path.join(JSON_DIR, 'ribalta-beam.json')
+
+        elif index == 111:
+            fixture_files = ['data-ii.json', 'tour-hazer-ii.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 112:
+            file_path = os.path.join(JSON_DIR, 'smart-36.json')
+
+        elif index == 113:
+            fixture_files = ['max-par-20.json', 'mini-par-12.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 114:
+            file_path = os.path.join(JSON_DIR, '3204r-h.json')
+
+        elif index == 115:
+            fixture_files = ['mini-beam-rgbw.json', 'stage-wash-7x10w-led-moving-head.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 116:
+            fixture_files = ['af-180-led-fogger.json', 'af-250.json', 'afh-600.json', 'bel6-ip-bar-hex.json', 'clb5-2p-rgb-ww-compact-led-par.json', 'hz-200-compact-hazer.json', 'led-bar-240-8.json', 'led-flood-panel-150.json', 'led-par-56.json', 'led-par-64.json', 'matrixx-sc-100.json', 'mh-100.json', 'mh-x20.json', 'mh-x25.json', 'mh-x30-led-spot.json', 'mh-x50.json', 'mh-x60.json', 'octagon-theater-20x6w-cw-ww-a.json', 'par-56.json', 'remus-hexspot-515.json', 'revueled-120-cob-rgbww.json', 'revueled-120-cob-true-white.json', 'stage-tri-led.json', 'vf-1200-dmx-vertifog-co2-fx.json', 'wild-wash-132-led-rgb-dmx.json', 'wild-wash-648-led-white-dmx.json', 'xbrick-full-colour.json', 'xbrick-quad-16x8w-rgbw.json', 'z120m-par-64-led-rgbw-120w.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 117:
+            fixture_files = ['servo-color-4k.json', 'stickolor-1210uhd.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 118:
+            file_path = os.path.join(JSON_DIR, 'light-deflector.json')
+
+        elif index == 119:
+            file_path = os.path.join(JSON_DIR, 'g-2011-nova.json')
+
+        elif index == 120:
+            fixture_files = ['nebula-18.json', 'nebula-6.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 121:
+            file_path = os.path.join(JSON_DIR, '3-10w-battery-led-wedge-par.json')
+
+        elif index == 122:
+            file_path = os.path.join(JSON_DIR, 'solaris-flare.json')
+
+        elif index == 123:
+            file_path = os.path.join(JSON_DIR, '3-led-par-light-rgbuv.json')
+
+        elif index == 124:
+            fixture_files = ['b117-par-can-4in1-rgbw-18-leds.json', 'mini-led-spot-25w.json', 'par-light-b262.json', 'zq-b20-mini-spider-light.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 125:
+            file_path = os.path.join(JSON_DIR, 'radiance-hazer.json')
+
+        elif index == 126:
+            fixture_files = ['bat-par-6-rgbuv.json', 'bat-par-6-rgbwa.json', 'easy-move-xs-hp-wash-7x8w-rgbw.json', 'giga-bar-frost-pix-8-rgb.json', 'giga-bar-hex-3.json', 'hero-wash-340fx-rgbw-zoom.json', 'led-hellball-3-rgb.json', 'led-theater-spot-100.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
+        elif index == 127:
+            file_path = os.path.join(JSON_DIR, 'aeron-250-ii.json')
+
+        elif index == 128:
+            fixture_files = ['thintri64.json', 'tristrip3z.json']
+            if 0 <= current_index < len(fixture_files):
+                file_path = os.path.join(JSON_DIR, fixture_files[current_index])
+
         return file_path, index_num
 
     def load_json_fixtures(self, filename): #Loads selected json
@@ -709,11 +1189,11 @@ class mainWindow(QMainWindow):
                 item.setHidden(True)
 
     def delete_fixture(self): #Delete fixture from sceneList
-        current_item = self.sceneList.currentItem()
-        row = self.sceneList.row(current_item)
+        item = self.sceneList.currentItem()
+        row = self.sceneList.row(item)
         self.sceneList.takeItem(row)
 
-        print(f"{selected_item} deleted from sceneList")
+        print(f"{item} deleted from sceneList")
 
     def fixture_settings(self): #Open fixture settings window - linked to 
                                 #selected fixture
@@ -778,12 +1258,15 @@ class mainWindow(QMainWindow):
 
     def sceneList_item_clicked(self, index): #Enables fixture settings button when item is selected
         global selected_item
+        
         selected_item = self.sceneList.currentItem().text()
 
         print(selected_item)
         
         if index != None:
             self.fixtureSettings_btn.setEnabled(True)
+        else:
+            self.fixtureSettings_btn.setEnabled(False)
 
     def blackout_btn_clicked(self): #Sets master fader only to positon 0
         self.master_fader.setSliderPosition(0)
@@ -795,8 +1278,32 @@ class mainWindow(QMainWindow):
         else:
             print("Blackout error")
 
+    def initUI(self):
+        self.setGeometry(100, 100, 800, 600)  # Set initial size
+        
+        self.button1 = QPushButton("Button 1", self)
+        self.button1.setGeometry(50, 50, 200, 50)
 
+        self.button2 = QPushButton("Button 2", self)
+        self.button2.setGeometry(300, 50, 200, 50)
+    
+    def resizeEvent(self, event):
+        new_size = self.size()
+        
+        for widget, (original_geometry, original_window_size) in self.widget_data.items():
 
+            x_ratio = new_size.width() / original_window_size.width()
+            y_ratio = new_size.height() / original_window_size.height()
+            
+            new_geometry = QRectF(original_geometry)
+            new_geometry.setX(original_geometry.x() * x_ratio)
+            new_geometry.setY(original_geometry.y() * y_ratio)
+            new_geometry.setWidth(original_geometry.width() * x_ratio)
+            new_geometry.setHeight(original_geometry.height() * y_ratio)
+
+            widget.setGeometry(new_geometry.toRect())
+
+        super().resizeEvent(event)
 
 class FixtureSettingsWindow(QMainWindow):
     
@@ -855,7 +1362,7 @@ class FixtureSettingsWindow(QMainWindow):
         mode_items = modes.split(", ")
         self.mode_select.addItems(mode_items)
 
-    def save_name(self):
+    def save_name(self): #Save inputed name to fixture
         name = self.fixtureName.text()
         
         if len(name) <= 16:
@@ -870,10 +1377,10 @@ class FixtureSettingsWindow(QMainWindow):
         if not name:
             self.noText_lbl.setHidden(False)
                 
-    def close_settings_window(self):
+    def close_settings_window(self): #Closes fixture settings
         self.close()
 
-    def update_fixture_dmx(self):
+    def update_fixture_dmx(self): #Update fixture DMX Address
         entry = int(self.dmxAddress.text())
         fixture = selected_item
 
@@ -883,13 +1390,16 @@ class FixtureSettingsWindow(QMainWindow):
         else:
             print(f"DMX Address for {fixture} updated to: {entry}")
 
-    def fader_patch(self):
+    def fader_patch(self): #Patch fixtures to one of 28 channels
         global selected_item
+        global channel_lbl
         fader = self.faderPatch.currentText()
+        channel_lbl.setText(fader)
+
 
         print(f"{selected_item} patched to {fader}")
         
-    def update_available_channels(self):
+    def update_available_channels(self): #Updates and prints available channels per fixture
         global data
 
         availableChannels = ", ".join(data.get("availableChannels", []))
@@ -897,9 +1407,6 @@ class FixtureSettingsWindow(QMainWindow):
         
         channels = availableChannels.split(", ")
         self.fixtureChannels_list.addItems(channels)
-
-
-
 
 
 #Main code
