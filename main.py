@@ -52,6 +52,10 @@ class mainWindow(QMainWindow):
         for widget in self.findChildren(QWidget):
             self.widget_data[widget] = (widget.geometry(), self.size())
 
+
+        global scene_current
+        scene_current = self.sceneList.currentItem()
+
         
         #Event Handlers
         self.manufacturerFixtures = self.load_json_fixtures(
@@ -497,8 +501,6 @@ class mainWindow(QMainWindow):
             file_path = os.path.join(JSON_DIR, "par-180-cob-3in1.json")
                 
         elif index == 3:
-            
-            
 
             fixture_files = ["alc4.json", "europe-105.json", "warp-m.json"]
             
@@ -511,12 +513,12 @@ class mainWindow(QMainWindow):
 
         elif index == 5:
             file_path = os.path.join(JSON_DIR, "alien-s.json")
-        
+        #ISSUES
         elif index == 6:
             
             current_index = self.fixtureList.currentRow()
 
-            fixture_files = ["7p-hex-ip.json", "12p-hex-ip.josn", 
+            fixture_files = ["7p-hex-ip.json", "12p-hex-ip.json", 
                              "18p-hex-ip.json", "auto-spot-150.json", 
                              "boom-box-fx2.json", 
                              "cob-cannon-wash.json", 
@@ -1399,14 +1401,21 @@ class FixtureSettingsWindow(QMainWindow):
 
         print(f"{selected_item} patched to {fader}")
         
-    def update_available_channels(self): #Updates and prints available channels per fixture
-        global data
-
-        availableChannels = ", ".join(data.get("availableChannels", []))
-        print(f"Available Channels: {availableChannels}")
+    def update_available_channels(self):
+        global scene_current
         
-        channels = availableChannels.split(", ")
-        self.fixtureChannels_list.addItems(channels)
+        fixture_name = scene_current.text()
+        file_path = os.path.join(JSON_DIR, f"{fixture_name}.json")  
+        
+        with open(file_path, "r") as file:
+            data = json.load(file)  
+            
+        availableChannels = ", ".join(data.get("availableChannels", []))
+        print(f"Available Channels: {availableChannels}")  
+        
+        self.fixtureChannels_list.clear()
+        self.fixtureChannels_list.addItems(availableChannels.split(", "))  
+
 
 
 #Main code

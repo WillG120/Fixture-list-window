@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2006</width>
+    <width>2008</width>
     <height>1256</height>
    </rect>
   </property>
@@ -871,7 +871,7 @@
    <widget class="QPushButton" name="delFixture_btn">
     <property name="geometry">
      <rect>
-      <x>1699</x>
+      <x>1710</x>
       <y>890</y>
       <width>113</width>
       <height>32</height>
@@ -883,6 +883,9 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="toolTip">
+     <string>Delete selected fixture</string>
+    </property>
     <property name="text">
      <string>Delete Fixture</string>
     </property>
@@ -890,7 +893,7 @@
    <widget class="QPushButton" name="fixtureSettings_btn">
     <property name="geometry">
      <rect>
-      <x>1801</x>
+      <x>1810</x>
       <y>890</y>
       <width>121</width>
       <height>32</height>
@@ -902,6 +905,9 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="toolTip">
+     <string>Open fixture settings</string>
+    </property>
     <property name="text">
      <string>Fixture Settings</string>
     </property>
@@ -909,7 +915,7 @@
    <widget class="QLabel" name="fixtureChannel_lbl">
     <property name="geometry">
      <rect>
-      <x>1920</x>
+      <x>1930</x>
       <y>895</y>
       <width>71</width>
       <height>20</height>
@@ -920,6 +926,9 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="toolTip">
+     <string>Fixture channel</string>
     </property>
     <property name="text">
      <string>No channel</string>
@@ -1168,6 +1177,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="toolTip">
+      <string>Master blackout</string>
+     </property>
      <property name="text">
       <string>Blackout</string>
      </property>
@@ -1186,6 +1198,9 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Reset all faders to off</string>
      </property>
      <property name="text">
       <string>Reset</string>
@@ -2819,6 +2834,22 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="groupCreate_btn">
+    <property name="geometry">
+     <rect>
+      <x>1693</x>
+      <y>895</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Create fixture group</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
    <zorder>masterBox</zorder>
    <zorder>manufacturerList</zorder>
    <zorder>searchBar_Manufacturers</zorder>
@@ -2832,13 +2863,14 @@
    <zorder>fixtureSettings_btn</zorder>
    <zorder>fixtureChannel_lbl</zorder>
    <zorder>faderBank</zorder>
+   <zorder>groupCreate_btn</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2006</width>
+     <width>2008</width>
      <height>24</height>
     </rect>
    </property>
