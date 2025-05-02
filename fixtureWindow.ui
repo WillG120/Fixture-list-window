@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2008</width>
-    <height>1256</height>
+    <width>2004</width>
+    <height>1220</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -852,8 +852,8 @@
    <widget class="QPushButton" name="fixtureAdd_btn">
     <property name="geometry">
      <rect>
-      <x>467</x>
-      <y>1190</y>
+      <x>470</x>
+      <y>1160</y>
       <width>113</width>
       <height>40</height>
      </rect>
@@ -871,7 +871,7 @@
    <widget class="QPushButton" name="delFixture_btn">
     <property name="geometry">
      <rect>
-      <x>1710</x>
+      <x>1720</x>
       <y>890</y>
       <width>113</width>
       <height>32</height>
@@ -893,7 +893,7 @@
    <widget class="QPushButton" name="fixtureSettings_btn">
     <property name="geometry">
      <rect>
-      <x>1810</x>
+      <x>1820</x>
       <y>890</y>
       <width>121</width>
       <height>32</height>
@@ -915,7 +915,7 @@
    <widget class="QLabel" name="fixtureChannel_lbl">
     <property name="geometry">
      <rect>
-      <x>1930</x>
+      <x>1934</x>
       <y>895</y>
       <width>71</width>
       <height>20</height>
@@ -1198,9 +1198,6 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Reset all faders to off</string>
      </property>
      <property name="text">
       <string>Reset</string>
@@ -2834,17 +2831,24 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="groupCreate_btn">
+   <widget class="QGraphicsView" name="workspace">
     <property name="geometry">
      <rect>
-      <x>1693</x>
-      <y>895</y>
-      <width>21</width>
-      <height>21</height>
+      <x>580</x>
+      <y>0</y>
+      <width>1111</width>
+      <height>921</height>
      </rect>
     </property>
-    <property name="toolTip">
-     <string>Create fixture group</string>
+   </widget>
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>1697</x>
+      <y>894</y>
+      <width>26</width>
+      <height>22</height>
+     </rect>
     </property>
     <property name="text">
      <string>+</string>
@@ -2863,14 +2867,15 @@
    <zorder>fixtureSettings_btn</zorder>
    <zorder>fixtureChannel_lbl</zorder>
    <zorder>faderBank</zorder>
-   <zorder>groupCreate_btn</zorder>
+   <zorder>workspace</zorder>
+   <zorder>toolButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2008</width>
+     <width>2004</width>
      <height>24</height>
     </rect>
    </property>

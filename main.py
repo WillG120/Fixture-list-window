@@ -4,12 +4,15 @@ import json
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QMainWindow, QApplication, QLineEdit, QListWidget,
     QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel, QTableWidgetItem, 
-    QPushButton, QComboBox, QCheckBox, QTabWidget, QWidget, QDial)
+    QPushButton, QComboBox, QCheckBox, QTabWidget, QWidget, QDial, QListWidgetItem, QGraphicsScene, QGraphicsView, QGraphicsPixmapItem, QGraphicsRectItem)
 from PyQt5 import uic
 from PyQt5.QtCore import QRectF
+from PyQt5.QtGui import QPixmap, QBrush
+from PyQt5.QtCore import Qt
 
 
 JSON_DIR = "fixtures"
+IMG_DIR = "images"
 
 
 class mainWindow(QMainWindow):
@@ -18,6 +21,13 @@ class mainWindow(QMainWindow):
         super(mainWindow, self).__init__()
 
         uic.loadUi("fixtureWindow.ui",self)
+
+        self.graphicsView = self.findChild(QGraphicsView, "workspace")
+        self.scene = CustomGraphicsScene(self)
+        self.graphicsView.setScene(self.scene)
+
+        self.addItem_btn = self.findChild(QPushButton, "fixtureAdd_btn")
+        self.addItem_btn.clicked.connect(self.add_item_to_scene)
 
         self.manufacturerList = self.findChild(QListWidget, 
                                                "manufacturerList")
@@ -75,6 +85,7 @@ class mainWindow(QMainWindow):
         self.reset_btn.clicked.connect(self.reset_faders)
         self.sceneList.itemClicked.connect(self.sceneList_item_clicked)
         self.blackout_btn.clicked.connect(self.blackout_btn_clicked)
+
         
 
         #Wheel Dials
@@ -1148,6 +1159,9 @@ class mainWindow(QMainWindow):
 
         self.sceneList.addItem(fixture)
 
+
+        
+
     def update_manufacturers(self): #Manufacturer Search bar
 
         search_entry = self.searchBar_Manufacturers.text().lower()
@@ -1307,6 +1321,28 @@ class mainWindow(QMainWindow):
 
         super().resizeEvent(event)
 
+    def add_item_to_scene(self):
+        # Create image path and position
+        image_path = os.path.join(IMG_DIR, "fixture_0.png")
+        x, y = 50, 50  # Default spawn coordinates
+
+        # Add a new item to the sceneList
+        selected_fixture = self.fixtureList.currentItem()
+        if selected_fixture is None:
+            return  # Avoids crash if nothing is selected
+
+        fixture_name = selected_fixture.text()
+        list_item = QListWidgetItem(fixture_name)
+        self.sceneList.addItem(list_item)
+
+        # Create and add draggable item
+        item = DraggableItem(image_path, x, y, list_item)
+        self.scene.addItem(item)
+
+        # Select the new list item
+        self.sceneList.setCurrentItem(list_item)
+
+
 class FixtureSettingsWindow(QMainWindow):
     
     def __init__(self):
@@ -1417,6 +1453,30 @@ class FixtureSettingsWindow(QMainWindow):
         self.fixtureChannels_list.addItems(availableChannels.split(", "))  
 
 
+class DraggableItem(QGraphicsPixmapItem):
+    def __init__(self, image_path, x, y, linked_list_item):
+        pixmap = QPixmap(image_path)
+        scaled_pixmap = pixmap.scaled(40, 40)  # or any size you prefer
+        super().__init__(scaled_pixmap)  # correct super() call for QGraphicsPixmapItem
+
+        self.setPos(x, y)
+        self.setFlags(
+            QGraphicsPixmapItem.ItemIsMovable |
+            QGraphicsPixmapItem.ItemIsSelectable |
+            QGraphicsPixmapItem.ItemSendsGeometryChanges
+        )
+
+        self.linked_list_item = linked_list_item
+
+
+class CustomGraphicsScene(QGraphicsScene):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setSceneRect(0, 0, 600, 400)
+
+    def add_draggable_item(self, x=50, y=50):
+        item = DraggableItem(x, y)
+        self.addItem(item)
 
 #Main code
 app = QApplication(sys.argv)
