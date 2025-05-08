@@ -27,6 +27,7 @@ class mainWindow(QMainWindow):
 
 
         self.scene_item_map = {}
+        self.sceneList.itemClicked.connect(self.highlight_scene_item)
 
         self.addItem_btn = self.findChild(QPushButton, "fixtureAdd_btn")
         self.addItem_btn.clicked.connect(self.add_item_to_scene)
@@ -1313,29 +1314,34 @@ class mainWindow(QMainWindow):
 
     def add_item_to_scene(self):
         fixture_item = self.fixtureList.currentItem()
-        if fixture_item is None:
-            return
 
         fixture_name = fixture_item.text()
         image_path = os.path.join(IMG_DIR, "fixture_0.png")
 
         list_item = QListWidgetItem(fixture_name)
         self.sceneList.addItem(list_item)
-
     
         x, y = (1111 - 50) // 2, (921 - 50) // 2
 
-        item = DraggableItem(image_path, x, y, list_item)
+        item = DraggableItem(image_path, x, y, fixture_name, self.sceneList)
+        item.setFlag(QGraphicsItem.ItemIsSelectable)
         self.scene.addItem(item)
+
+        
 
         # Save the link
         list_item.setData(Qt.UserRole, item)
 
+        fixture_name = list_item.text()  # or reuse if already defined
+        self.scene_item_map[fixture_name] = item
+        item.list_item_text = fixture_name
 
-
-    def highlight_list_item(self, list_item):
-        self.sceneList.setCurrentItem(list_item)
-        self.sceneList.scrollToItem(list_item)
+    def highlight_scene_item(self, item):
+        fixture_name = item.text()
+        if fixture_name in self.scene_item_map:
+            graphics_item = self.scene_item_map[fixture_name]
+            self.scene.clearSelection()
+            graphics_item.setSelected(True)
 
 
 class FixtureSettingsWindow(QMainWindow):   
@@ -1454,6 +1460,18 @@ class DraggableItem(QGraphicsPixmapItem):
         self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
         self.setPos(x, y)
         self.linked_list_item = linked_list_item  # Store the link
+        self.sceneList
+        self.list_item_text = list_item_text
+        self.scene_list_widget = scene_list_widget
+
+    def mouseReleaseEvent(self, event):
+        super().mouseReleaseEvent(event)
+        if hasattr(self, "list_item_text"):
+            items = self.scene_list_widget.findItems(self.list_item_text, QtCore.Qt.MatchExactly)
+            if items:
+                self.scene_list_widget.clearSelection()
+                items[0].setSelected(True)
+
 
 
 class CustomGraphicsScene(QGraphicsScene):
