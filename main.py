@@ -4,9 +4,9 @@ import json
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QMainWindow, QApplication, QLineEdit, QListWidget,
     QLineEdit, QTableWidget, QSlider, QLCDNumber, QLabel, QTableWidgetItem, 
-    QPushButton, QComboBox, QCheckBox, QTabWidget, QWidget, QDial, QListWidgetItem, QGraphicsScene, QGraphicsView, QGraphicsPixmapItem, QGraphicsRectItem)
+    QPushButton, QComboBox, QCheckBox, QTabWidget, QWidget, QDial, QListWidgetItem, QGraphicsScene, QGraphicsView, QGraphicsPixmapItem, QGraphicsItem)
 from PyQt5 import uic
-from PyQt5.QtGui import QPixmap, QBrush
+from PyQt5.QtGui import QPixmap, QBrush, QPen
 from PyQt5.QtCore import Qt, pyqtSignal, QRectF, QObject
 
 
@@ -20,9 +20,11 @@ class mainWindow(QMainWindow):
 
         uic.loadUi("fixtureWindow.ui",self)
 
-        self.graphicsView = self.findChild(QGraphicsView, "workspace")
-        self.scene = CustomGraphicsScene(self)
-        self.graphicsView.setScene(self.scene)
+        self.workspace = self.findChild(QGraphicsView, "workspace")
+        self.scene = QGraphicsScene(0, 0, 1111, 921)
+        self.scene.addRect(0, 0, 1111, 921, pen=QPen(Qt.red)) #testing
+        self.workspace.setScene(self.scene)
+
 
         self.scene_item_map = {}
 
@@ -1196,8 +1198,8 @@ class mainWindow(QMainWindow):
         for item in selected_items:
             scene_item = item.data(Qt.UserRole)
             if scene_item:
-                self.scene.removeItem(scene_item)  # Remove from scene
-            self.sceneList.takeItem(self.sceneList.row(item))  # Remove from list
+                self.scene.removeItem(scene_item)
+            self.sceneList.takeItem(self.sceneList.row(item))
 
     def fixture_settings(self): #Open fixture settings window - linked to 
                                 #selected fixture
@@ -1310,24 +1312,25 @@ class mainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def add_item_to_scene(self):
-        selected_fixture = self.fixtureList.currentItem()
-        if not selected_fixture:
+        fixture_item = self.fixtureList.currentItem()
+        if fixture_item is None:
             return
 
-        fixture_name = selected_fixture.text()
+        fixture_name = fixture_item.text()
         image_path = os.path.join(IMG_DIR, "fixture_0.png")
-        x = (self.graphicsView.width() - 50) / 2
-        y = (self.graphicsView.height() - 50) / 2
-
-        pixmap = QPixmap(image_path).scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        scene_item = QGraphicsPixmapItem(pixmap)
-        scene_item.setFlags(QGraphicsPixmapItem.ItemIsMovable | QGraphicsPixmapItem.ItemIsSelectable)
-        scene_item.setPos(x, y)
-        self.scene.addItem(scene_item)
 
         list_item = QListWidgetItem(fixture_name)
-        list_item.setData(Qt.UserRole, scene_item)  # 💡 Store the graphics item
         self.sceneList.addItem(list_item)
+
+    
+        x, y = (1111 - 50) // 2, (921 - 50) // 2
+
+        item = DraggableItem(image_path, x, y, list_item)
+        self.scene.addItem(item)
+
+        # Save the link
+        list_item.setData(Qt.UserRole, item)
+
 
 
     def highlight_list_item(self, list_item):
@@ -1445,27 +1448,12 @@ class FixtureSettingsWindow(QMainWindow):
 
 
 class DraggableItem(QGraphicsPixmapItem):
-    def __init__(self, image_path, x, y, linked_list_item=None):
-        pixmap = QPixmap(image_path)
-        if pixmap.isNull():
-            print(f"Failed to load image: {image_path}")
-            pixmap = QPixmap(50, 50)  # fallback to placeholder
-
-        # Scale the image down
-        scaled_pixmap = pixmap.scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-
-        # Initialize superclass with the scaled pixmap
-        super().__init__(scaled_pixmap)
-
-        self.setFlags(QGraphicsPixmapItem.ItemIsMovable | QGraphicsPixmapItem.ItemIsSelectable)
+    def __init__(self, image_path, x, y, linked_list_item):
+        pixmap = QPixmap(image_path).scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        super().__init__(pixmap)
+        self.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
         self.setPos(x, y)
-
-        self.linked_list_item = linked_list_item  # Store reference to associated QListWidgetItem
-
-
-    def mousePressEvent(self, event):
-        super().mousePressEvent(event)
-        self.selected.emit(self.linked_list_item)
+        self.linked_list_item = linked_list_item  # Store the link
 
 
 class CustomGraphicsScene(QGraphicsScene):
