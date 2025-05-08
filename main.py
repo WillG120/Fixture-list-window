@@ -1193,12 +1193,11 @@ class mainWindow(QMainWindow):
 
     def delete_fixture(self):
         selected_items = self.sceneList.selectedItems()
-        if selected_items:
-            for item in selected_items:
-                scene_item = item.data(Qt.UserRole)
-                if scene_item:
-                    self.scene.removeItem(scene_item)
-                self.sceneList.takeItem(self.sceneList.row(item))
+        for item in selected_items:
+            scene_item = item.data(Qt.UserRole)
+            if scene_item:
+                self.scene.removeItem(scene_item)  # Remove from scene
+            self.sceneList.takeItem(self.sceneList.row(item))  # Remove from list
 
     def fixture_settings(self): #Open fixture settings window - linked to 
                                 #selected fixture
@@ -1311,23 +1310,25 @@ class mainWindow(QMainWindow):
         super().resizeEvent(event)
 
     def add_item_to_scene(self):
-        image_path = os.path.join(IMG_DIR, "fixture_0.png")
-        x = (1111 - 100) // 2  # adjust size as needed
-        y = (921 - 100) // 2
+        selected_fixture = self.fixtureList.currentItem()
+        if not selected_fixture:
+            return
 
-        # Create list item and add to scene list
-        selected = self.fixtureList.currentItem()
-        fixture_name = selected.text()
+        fixture_name = selected_fixture.text()
+        image_path = os.path.join(IMG_DIR, "fixture_0.png")
+        x = (self.graphicsView.width() - 50) / 2
+        y = (self.graphicsView.height() - 50) / 2
+
+        pixmap = QPixmap(image_path).scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        scene_item = QGraphicsPixmapItem(pixmap)
+        scene_item.setFlags(QGraphicsPixmapItem.ItemIsMovable | QGraphicsPixmapItem.ItemIsSelectable)
+        scene_item.setPos(x, y)
+        self.scene.addItem(scene_item)
+
         list_item = QListWidgetItem(fixture_name)
+        list_item.setData(Qt.UserRole, scene_item)  # 💡 Store the graphics item
         self.sceneList.addItem(list_item)
 
-        # Create and add image item to the scene
-        item = DraggableItem(image_path, x, y, list_item)
-        item.selected.connect(self.highlight_list_item)
-        self.scene.addItem(item)
-
-        # Link the scene item to the list item
-        list_item.setData(Qt.UserRole, item)
 
     def highlight_list_item(self, list_item):
         self.sceneList.setCurrentItem(list_item)
@@ -1443,21 +1444,24 @@ class FixtureSettingsWindow(QMainWindow):
         self.fixtureChannels_list.addItems(availableChannels.split(", "))  
 
 
-class DraggableItem(QObject, QGraphicsPixmapItem):
-    selected = pyqtSignal(QListWidgetItem)
-    def __init__(self, image_path, x, y, linked_list_item):
+class DraggableItem(QGraphicsPixmapItem):
+    def __init__(self, image_path, x, y, linked_list_item=None):
         pixmap = QPixmap(image_path)
-        scaled_pixmap = pixmap.scaled(40, 40)  # or any size you prefer
-        super().__init__(scaled_pixmap)  # correct super() call for QGraphicsPixmapItem
+        if pixmap.isNull():
+            print(f"Failed to load image: {image_path}")
+            pixmap = QPixmap(50, 50)  # fallback to placeholder
 
+        # Scale the image down
+        scaled_pixmap = pixmap.scaled(50, 50, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+
+        # Initialize superclass with the scaled pixmap
+        super().__init__(scaled_pixmap)
+
+        self.setFlags(QGraphicsPixmapItem.ItemIsMovable | QGraphicsPixmapItem.ItemIsSelectable)
         self.setPos(x, y)
-        self.setFlags(
-            QGraphicsPixmapItem.ItemIsMovable |
-            QGraphicsPixmapItem.ItemIsSelectable |
-            QGraphicsPixmapItem.ItemSendsGeometryChanges
-        )
 
-        self.linked_list_item = linked_list_item
+        self.linked_list_item = linked_list_item  # Store reference to associated QListWidgetItem
+
 
     def mousePressEvent(self, event):
         super().mousePressEvent(event)
